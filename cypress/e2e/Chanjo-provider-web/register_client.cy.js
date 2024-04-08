@@ -14,22 +14,18 @@ context('Actions', () => {
         cy.get('#clientDetails_middleName').type('N')
         cy.get('#clientDetails_lastName').type('Newton')
         cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
+
+        //select a random date back 5 years
         cy.get('.ant-picker-input').click()
-        // Get all the available date cells
-     cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
-        // Calculate the number of available dates
+        cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
         const numAvailableDates = $dateCells.length        
-        // Generate a random index within the range of available dates
         const randomIndex = Math.floor(Math.random() * numAvailableDates)        
-        // Get the random date cell
         const randomDateCell = $dateCells.eq(randomIndex)        
-        // Get the title attribute which contains the date
-        const dateTitle = randomDateCell.attr('title')        
-        // Extract the date in the format "DD-MM-YY"
-        const [year, month, day] = dateTitle.split('-')
-        const formattedDate = `${day}-${month}-${year.slice(-2)}`        
-        // Click on the random date cell to select the date
+       // const dateTitle = randomDateCell.attr('title')        
+       // const [year, month, day] = dateTitle.split('-')
+       // const formattedDate = `${day}-${month}-${year.slice(-2)}`        
         randomDateCell.click()
+
 
         const randomPresses11 = Math.floor(Math.random() * 0); // Change 2 to 3 to include the first option
 

@@ -17,7 +17,7 @@ Cypress.Commands.add('login',()=>{
    } else {
          cy.get('[title="Facility"] > .ant-select-item-option-content').click()
    }
-   cy.get('.mt-6 > .flex').click()
+   cy.get('.ant-btn').click()
   })
 
 
