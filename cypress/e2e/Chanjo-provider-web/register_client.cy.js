@@ -46,17 +46,9 @@ context('Actions', () => {
         cy.get('#phoneNumber').type('0712345654')
         cy.get('.grid > .ml-4').click()
         cy.get('button').contains('Next').click();
-        cy.get('#headlessui-combobox-button-\:r1b\:').click()
-
-
-      
+        cy.get('#headlessui-combobox-button-\:r1b\:').click()     
     })
-         
-
-
-
-
-        //cy.get('.ant-picker-input').click()
+       //cy.get('.ant-picker-input').click()
        /* const start = new Date(1960, 0, 1);
         const end = new Date(2023, 0, 1);
         const randomDate = new Date(
@@ -71,9 +63,6 @@ context('Actions', () => {
           .type("{enter}");
   
         cy.wait(1000);*/
-
-     
-  
-})
+  })
   })
   
