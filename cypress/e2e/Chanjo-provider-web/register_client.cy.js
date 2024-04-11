@@ -14,9 +14,10 @@ context('Actions', () => {
         cy.get('#clientDetails_middleName').type('N')
         cy.get('#clientDetails_lastName').type('Newton')
         cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
+        cy.get('#clientDetails_estimatedAge > :nth-child(2) > .ant-radio > .ant-radio-input').click()
 
         //select a random date back 5 years
-        cy.get('.ant-picker-input').click()
+       /* cy.get('.ant-picker-input').click()
         cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
         const numAvailableDates = $dateCells.length        
         const randomIndex = Math.floor(Math.random() * numAvailableDates)        
@@ -25,11 +26,11 @@ context('Actions', () => {
        // const [year, month, day] = dateTitle.split('-')
        // const formattedDate = `${day}-${month}-${year.slice(-2)}`        
         randomDateCell.click()
-
+*/
 
         const randomPresses11 = Math.floor(Math.random() * 0); // Change 2 to 3 to include the first option
 
-        cy.get(':nth-child(7) > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-item').click()        // cy.get("#patientForm_xED9XkpCeUe").trigger("keydown", { keyCode: 40 }); // Down arrow key
+        cy.get(':nth-child(7) > .ant-form-item > .ant-row > .ant-form-item-control >.ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-item').click() // cy.get("#patientForm_xED9XkpCeUe").trigger("keydown", { keyCode: 40 }); // Down arrow key
         cy.get(':nth-child(7) > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-item').trigger("keydown", { keyCode: 13 }); // Enter key  
 
         // Generate a random 10-digit number
@@ -38,31 +39,29 @@ context('Actions', () => {
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
         cy.get('button').contains('Next').click();
 
-        const randomPresses12 = Math.floor(Math.random() * 0); // Change 2 to 3 to include the first option
+        const randomPresses12 = Math.floor(Math.random() * 0);
 
         cy.get('#caregiverType').click()        
-        cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); // Enter key  
+        cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); 
         cy.get('#caregiverName').type('Alex')
         cy.get('#phoneNumber').type('0712345654')
         cy.get('.grid > .ml-4').click()
         cy.get('button').contains('Next').click();
-        cy.get('#headlessui-combobox-button-\:r1b\:').click()     
-    })
-       //cy.get('.ant-picker-input').click()
-       /* const start = new Date(1960, 0, 1);
-        const end = new Date(2023, 0, 1);
-        const randomDate = new Date(
-          start.getTime() + Math.random() * (end.getTime() - start.getTime())
-        );
-  
-        const formattedDate = randomDate.toISOString().split("T")[0];
-  
-        cy.get('.ant-picker-input') // Date of birth
-          .click()
-          .type(formattedDate)
-          .type("{enter}");
-  
-        cy.wait(1000);*/
+
+
+        const county = [
+            "BUNGOMA",
+          ];
+          const randomCounty =
+            county[Math.floor(Math.random() * county.length)];
+    
+          cy.get('#headlessui-combobox-input-\:rv\:').type(randomCounty, { force: true });
+          cy.contains(randomCounty).click();
+
+
+
+        })
+      
   })
-  })
+ // })
   

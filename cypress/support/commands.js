@@ -6,8 +6,8 @@ Cypress.Commands.add("baseurl",()=>{
 })
 
 Cypress.Commands.add('login',()=>{
-  cy.get('#idNumber').type('101011')
-  cy.get('#password').type('password')
+  cy.get('#idNumber').type('1001001')
+  cy.get('#password').type('new_password')
   cy.get('#location').click();
 
    // randomly select a facility
