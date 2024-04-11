@@ -1,19 +1,25 @@
 /// <reference types="cypress" />
+import faker from 'faker';
+
 
 context('Actions', () => {
     beforeEach(() => {
         cy.baseurl()
         cy.login()
     })
+
+    const firstName = faker.name.firstName();
+    const familyName = faker.name.lastName();
+    const lastName = faker.name.lastName();
   
     const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1; // Random number between 1 and 5
 
     it('.type() - Register a Client', () => {
         cy.get('.max-w-7xl > [href="/register-client/_"]').click()
         cy.wait(2500)
-        cy.get('#clientDetails_firstName').type('Jane')
-        cy.get('#clientDetails_middleName').type('N')
-        cy.get('#clientDetails_lastName').type('Newton')
+        cy.get('#clientDetails_firstName').type(firstName)
+        cy.get('#clientDetails_middleName').type(familyName)
+        cy.get('#clientDetails_lastName').type(lastName)
         cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
        // cy.get('#clientDetails_estimatedAge > :nth-child(2) > .ant-radio > .ant-radio-input').click()
 
@@ -40,12 +46,12 @@ context('Actions', () => {
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
         cy.get('button').contains('Next').click();
 
+        //**********CAREGIVER*****************************************************************//
         const randomPresses12 = Math.floor(Math.random() * 0);
-
         cy.get('#caregiverType').click()        
         cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); 
         cy.get('#caregiverName').type('Alex')
-
+        //*****Phone number******************************************************************//
         const randomNumber2 =
         "07" +
         Math.floor(Math.random() * 1000000000)
@@ -53,6 +59,8 @@ context('Actions', () => {
           .padStart(8, "0");
   
           cy.get('#phoneNumber').type(randomNumber); // Phone number
+        //***************************************************************************//
+
 
         cy.get('.grid > .ml-4').click()
         cy.get('button').contains('Next').click();

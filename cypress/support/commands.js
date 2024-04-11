@@ -1,5 +1,8 @@
 Cypress.Commands.add("baseurl",()=>{
+
   cy.viewport(1280, 720);
+  
+
     cy.visit('http://chanjoke.intellisoftkenya.com:8099/');
 
 
