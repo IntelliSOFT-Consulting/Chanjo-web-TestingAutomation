@@ -11,6 +11,7 @@ context('Actions', () => {
     const firstName = faker.name.firstName();
     const familyName = faker.name.lastName();
     const lastName = faker.name.lastName();
+    const careGiverName = faker.name.findName();
   
     const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1; // Random number between 1 and 5
 
@@ -50,8 +51,8 @@ context('Actions', () => {
         const randomPresses12 = Math.floor(Math.random() * 0);
         cy.get('#caregiverType').click()        
         cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); 
-        cy.get('#caregiverName').type('Alex')
-        //*****Phone number******************************************************************//
+        cy.get('#caregiverName').type(careGiverName)
+
         const randomNumber2 =
         "07" +
         Math.floor(Math.random() * 1000000000)
@@ -65,13 +66,30 @@ context('Actions', () => {
         cy.get('.grid > .ml-4').click()
         cy.get('button').contains('Next').click();
         cy.wait(1500)
+
+        /*************ADDRESS DETAILS***********************************************/
+
+        const county = [
+            "BARINGO",
+            "BUSIA",
+            "NAIROBI",
+            "KISUMU",
+            "MOMBASAl",
+            "KERICHO",
+            "MAKUENI",
+            "BUNGOMA",
+            "KISII",
+            "NAKURU",
+          ];
+          const randomIndex1 = Math.floor(Math.random() * county.length);
+          const randomCOunty = county[randomIndex];
  
-            cy.get('#headlessui-combobox-input-\\:rt\\:').type("BARINGO").wait(1000).type("{downarrow}").type('{Enter}');
-            cy.get('#headlessui-combobox-input-\\:r13\\:').type("BARINGO").wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#headlessui-combobox-input-\\:rt\\:').type(randomCOunty).wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#headlessui-combobox-input-\\:r13\\:').type("B").wait(1000).type("{downarrow}").type('{Enter}');
             cy.get('#headlessui-combobox-input-\\:r19\\:').type("E").wait(1000).type("{downarrow}").type('{Enter}');
             cy.get('button').contains('Preview').click();
             cy.get('button').contains('Submit').click();
-            cy.wait(1000)
+            cy.wait(2500)
             cy.get('button').contains('Close').click();
 
             
@@ -81,5 +99,10 @@ context('Actions', () => {
         })
       
   })
+  it('.type() - Administer Vaccine', () => {
+
+
+    
   })
+})
   
