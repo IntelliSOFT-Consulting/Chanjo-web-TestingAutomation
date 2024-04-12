@@ -12,11 +12,11 @@ context('Actions', () => {
     const familyName = faker.name.lastName();
     const lastName = faker.name.lastName();
     const careGiverName = faker.name.findName();
-    const numberOfRuns = 10;
+    const numberOfRuns = 10;//Comment out this line if you are running the script only once
     const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
   
-    const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1; // Random number between 1 and 5
+    const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
     function runTest() {
     it('.type() - Register a Client', () => {
         cy.get('.max-w-7xl > [href="/register-client/_"]').click()
@@ -101,15 +101,15 @@ context('Actions', () => {
                  }
                  cy.get('#rc_select_15').type('{enter}');
 
-
-           // cy.get('#rc_select_14').trigger("keydown", { keyCode: 13 }); // Enter key  
-    
-            //cy.get('#rc_select_15').type("E").wait(1000).type("{downarrow}").type('{Enter}');
             cy.get('button').contains('Preview').click();
             cy.get('button').contains('Submit').click();
             cy.wait(2500)
             cy.get('button').contains('Close').click();
             cy.wait(1500)
+
+
+                  /*************Administer Vaccines***********************************************/
+  
             cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
             cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
             cy.get('button').contains('Administer Vaccine').click();
@@ -118,52 +118,47 @@ context('Actions', () => {
 
             const randomNumber14 = Math.floor(Math.random() * 2); // Generates a number between 0 and 2
 
-    // Execute one of the Cypress commands based on the random number
-    switch (randomNumber14) {
-      case 0:
-        cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
-          cy.wait(2500)
-          cy.get('button').contains('Administer').click();
-          cy.wait(2000)
-          cy.get('button').contains('Close').click()
-        });
+             switch (randomNumber14) {
+             case 0://Administer
+               cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+               cy.wait(2500)
+               cy.get('button').contains('Administer').click();
+               cy.wait(2000)
+               cy.get('button').contains('Close').click()
+               });
         break;
-      case 1:
-        cy.get('.mt-5 > .bg-\\[\\#5370B0\\]').click().then(() => {
-          cy.get('#contraindicationDetails').type("patient has an injury")
-          cy.get('.ant-picker-input').click()
-        cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
-        const numAvailableDates = $dateCells.length        
-        const randomIndex = Math.floor(Math.random() * numAvailableDates)        
-        const randomDateCell = $dateCells.eq(randomIndex) 
-        randomDateCell.click()
-        })
+             case 1://Contraindicate
+              cy.get('.mt-5 > .bg-\\[\\#5370B0\\]').click().then(() => {
+               cy.get('#contraindicationDetails').type("patient has an injury")
+               cy.get('.ant-picker-input').click()
+              cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+              const numAvailableDates = $dateCells.length        
+              const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+              const randomDateCell = $dateCells.eq(randomIndex) 
+              randomDateCell.click()
+              })
           
-          cy.wait(2500)
-          cy.get('button').contains('Contraindicate').click();
-        });
-        cy.get('button').contains('Close').click()
+              cy.wait(2500)
+              cy.get('button').contains('Contraindicate').click();
+              });
+              cy.get('button').contains('Close').click()
 
         break;
-      default:
-        // Handle unexpected cases
+             default:
+            // Handle unexpected cases
         break;
        }
 
         })
       
-  //})
-  //it('.type() - Administer Vaccine', () => {
+            })
+              }
 
-      
-    
-  })
-    }
-  for (let i = 0; i < numberOfRuns; i++) {
-    describe(`Test Run ${i + 1}`, () => {
-      runTest();
-    });
-  
+            for (let i = 0; i < numberOfRuns; i++) {//loop again
+              describe(`Test Run ${i + 1}`, () => {
+                runTest();
+              });
+            
 }
 
 })
