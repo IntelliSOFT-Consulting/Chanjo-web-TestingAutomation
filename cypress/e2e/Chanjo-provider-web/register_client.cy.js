@@ -79,18 +79,26 @@ context('Actions', () => {
             "MAKUENI",
             "BUNGOMA",
             "KISII",
-            "NAKURU",
-          ];
+               ];
           const randomIndex1 = Math.floor(Math.random() * county.length);
-          const randomCOunty = county[randomIndex];
+          const randomCounty = county[randomIndex1];
  
-            cy.get('#headlessui-combobox-input-\\:rt\\:').type(randomCOunty).wait(1000).type("{downarrow}").type('{Enter}');
-            cy.get('#headlessui-combobox-input-\\:r13\\:').type("B").wait(1000).type("{downarrow}").type('{Enter}');
-            cy.get('#headlessui-combobox-input-\\:r19\\:').type("E").wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#rc_select_13').type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#rc_select_14').type("B").wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#rc_select_15').type("E").wait(1000).type("{downarrow}").type('{Enter}');
             cy.get('button').contains('Preview').click();
             cy.get('button').contains('Submit').click();
             cy.wait(2500)
             cy.get('button').contains('Close').click();
+            cy.wait(1500)
+            cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
+            cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
+            cy.get('button').contains('Administer Vaccine').click();
+            cy.get('.bg-\\[\\#4E8D6E\\]').click()
+           // cy.get('#vaccines_0_batchNumber').click().type("{downarrow}").type("{Enter}")
+           cy.get('button').contains('Administer').click();
+
+
 
             
    
@@ -98,8 +106,8 @@ context('Actions', () => {
 
         })
       
-  })
-  it('.type() - Administer Vaccine', () => {
+  //})
+  //it('.type() - Administer Vaccine', () => {
 
 
     
