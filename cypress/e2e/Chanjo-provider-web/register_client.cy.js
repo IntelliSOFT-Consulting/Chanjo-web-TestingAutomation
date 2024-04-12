@@ -113,9 +113,45 @@ context('Actions', () => {
             cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
             cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
             cy.get('button').contains('Administer Vaccine').click();
-            cy.get('.bg-\\[\\#4E8D6E\\]').click()
-           // cy.get('#vaccines_0_batchNumber').click().type("{downarrow}").type("{Enter}")
-           cy.get('button').contains('Administer').click();
+
+
+
+            const randomNumber14 = Math.floor(Math.random() * 2); // Generates a number between 0 and 2
+
+    // Execute one of the Cypress commands based on the random number
+    switch (randomNumber14) {
+      case 0:
+        cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+          cy.wait(2500)
+          cy.get('button').contains('Administer').click();
+        });
+        break;
+      case 1:
+        cy.get('.mt-5 > .bg-\\[\\#5370B0\\]').click().then(() => {
+          cy.get('#contraindicationDetails').type("patient has an injury")
+          cy.get('.ant-picker-input').click()
+        cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+        const numAvailableDates = $dateCells.length        
+        const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+        const randomDateCell = $dateCells.eq(randomIndex) 
+        randomDateCell.click()
+        })
+       
+
+          
+          cy.wait(2500)
+          cy.get('button').contains('Contraindicate').click();
+        });
+        break;
+      default:
+        // Handle unexpected cases
+        break;
+    }
+
+
+
+          
+           
 
 
 
