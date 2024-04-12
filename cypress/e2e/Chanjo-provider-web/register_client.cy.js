@@ -12,9 +12,12 @@ context('Actions', () => {
     const familyName = faker.name.lastName();
     const lastName = faker.name.lastName();
     const careGiverName = faker.name.findName();
+    const numberOfRuns = 10;
+    const numberOfDownArrowPresses = Cypress._.random(1, 10);
+
   
     const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1; // Random number between 1 and 5
-
+    function runTest() {
     it('.type() - Register a Client', () => {
         cy.get('.max-w-7xl > [href="/register-client/_"]').click()
         cy.wait(2500)
@@ -83,9 +86,25 @@ context('Actions', () => {
           const randomIndex1 = Math.floor(Math.random() * county.length);
           const randomCounty = county[randomIndex1];
  
-            cy.get('#rc_select_13').type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');
-            cy.get('#rc_select_14').type("B").wait(1000).type("{downarrow}").type('{Enter}');
-            cy.get('#rc_select_15').type("E").wait(1000).type("{downarrow}").type('{Enter}');
+            cy.get('#rc_select_13').type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');//county
+
+            cy.get('#rc_select_14').click()//subcounty            
+             for (let i = 0; i < numberOfDownArrowPresses; i++) {
+              cy.get('#rc_select_14').type('{downarrow}');
+               }
+               cy.get('#rc_select_14').type('{enter}');
+
+
+               cy.get('#rc_select_15').click()//ward            
+               for (let i = 0; i < numberOfDownArrowPresses; i++) {
+                cy.get('#rc_select_15').type('{downarrow}');
+                 }
+                 cy.get('#rc_select_15').type('{enter}');
+
+
+           // cy.get('#rc_select_14').trigger("keydown", { keyCode: 13 }); // Enter key  
+    
+            //cy.get('#rc_select_15').type("E").wait(1000).type("{downarrow}").type('{Enter}');
             cy.get('button').contains('Preview').click();
             cy.get('button').contains('Submit').click();
             cy.wait(2500)
@@ -109,8 +128,16 @@ context('Actions', () => {
   //})
   //it('.type() - Administer Vaccine', () => {
 
-
+      
     
   })
+    }
+  for (let i = 0; i < numberOfRuns; i++) {
+    describe(`Test Run ${i + 1}`, () => {
+      runTest();
+    });
+  
+}
+
 })
   
