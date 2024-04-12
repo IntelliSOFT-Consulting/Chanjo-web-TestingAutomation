@@ -124,6 +124,8 @@ context('Actions', () => {
         cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
           cy.wait(2500)
           cy.get('button').contains('Administer').click();
+          cy.wait(2000)
+          cy.get('button').contains('Close').click()
         });
         break;
       case 1:
@@ -136,28 +138,17 @@ context('Actions', () => {
         const randomDateCell = $dateCells.eq(randomIndex) 
         randomDateCell.click()
         })
-       
-
           
           cy.wait(2500)
           cy.get('button').contains('Contraindicate').click();
         });
+        cy.get('button').contains('Close').click()
+
         break;
       default:
         // Handle unexpected cases
         break;
-    }
-
-
-
-          
-           
-
-
-
-            
-   
-
+       }
 
         })
       
