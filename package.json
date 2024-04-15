@@ -2,5 +2,8 @@
   "devDependencies": {
     "cypress": "^13.7.1",
     "faker": "^5.5.3"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.13"
   }
 }
