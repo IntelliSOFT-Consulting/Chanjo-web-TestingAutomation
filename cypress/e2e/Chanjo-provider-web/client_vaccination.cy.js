@@ -1,9 +1,9 @@
 ///<reference types="cypress" />
 
 import faker from 'faker';
-
-
 let clientData;
+const numberOfRuns = 1;
+const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
     // Perform login once before running all tests
@@ -11,21 +11,15 @@ context('Actions', () => {
       //cy.session('login', ()=>{
         cy.baseurl();
        // cy.login();
-    })
-//  })
-    const numberOfDownArrowPresses = Cypress._.random(1, 10);
-
-    const numberOfRuns = 1;//Comment out this line if you are running the script only once
-
-   /* for (let i = 0; i < numberOfRuns; i++) {//loop again
-      describe(`Test Run ${i + 1}`, () => {
-        runTest();
-      });
-    
-     
-}*/
-const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
-   // function runTest() {
+  //  })
+ })
+ for (let i = 0; i < numberOfRuns; i++) {//loop again
+  describe(`Test Run ${i + 1}`, () => {
+    runTest();
+  });
+}
+  
+   function runTest() {
    it('.type() - Register a Client', () => {
     cy.viewport(1280, 720);
 
@@ -274,6 +268,7 @@ const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
           cy.get('button').contains('Submit').click()
 
       })
+    }
   })
     
           
