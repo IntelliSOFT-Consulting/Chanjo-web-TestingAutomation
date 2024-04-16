@@ -13,6 +13,8 @@ context('Actions', () => {
        // cy.login();
     })
 //  })
+    const numberOfDownArrowPresses = Cypress._.random(1, 10);
+
     const numberOfRuns = 1;//Comment out this line if you are running the script only once
 
    /* for (let i = 0; i < numberOfRuns; i++) {//loop again
@@ -22,12 +24,7 @@ context('Actions', () => {
     
      
 }*/
-
-   
-  
-
-  
-    const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
+const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
    // function runTest() {
    it('.type() - Register a Client', () => {
     cy.viewport(1280, 720);
@@ -36,7 +33,6 @@ context('Actions', () => {
     const familyName = faker.name.lastName();
     const lastName = faker.name.lastName();
     const careGiverName = faker.name.findName();
-    const numberOfDownArrowPresses = Cypress._.random(1, 10);
  
    cy.wait(2500)
    cy.get(':nth-child(5) > .hover\\:bg-gray-50\\]').contains("Register Client").click()
@@ -115,17 +111,14 @@ context('Actions', () => {
               cy.get('.ant-select-selection-search-input').eq(1).click()//subcounty 
                 cy.wait(1000)           
                   for (let i = 0; i < numberOfDownArrowPresses; i++) {
-                  cy.get('.ant-select-selection-search-input').eq(1).type('{downarrow}');
+                  cy.get('.ant-select-selection-search-input').eq(1).type('{downarrow}').type('{enter}');
                    }
-                  cy.get('.ant-select-selection-search-input').eq(1).type('{enter}');
-
-
+                  
                    cy.get('.ant-select-selection-search-input').eq(2).click()//ward 
                    cy.wait(1000)           
                    for (let i = 0; i < numberOfDownArrowPresses; i++) {
-                   cy.get('.ant-select-selection-search-input').eq(2).type('{downarrow}');
+                   cy.get('.ant-select-selection-search-input').eq(2).type('{downarrow}').type('{enter}');
                    }
-                   cy.get('.ant-select-selection-search-input').eq(2).type('{enter}');
             cy.get('button').contains('Preview').click();
             cy.get('button').contains('Submit').click();
             cy.wait(2500)
@@ -134,6 +127,24 @@ context('Actions', () => {
             //cy.log()
             //cy.debug()
                     
+                  })
+
+      it('.View CLient Details', () => {
+            cy.viewport(1280, 720);
+      cy.wait(5000);
+      const { firstName, lastName, careGiverName } = clientData;
+        cy.get(':nth-child(4) > .hover\\:bg-gray-50\\]').contains("Search Client").click()
+            cy.wait(2500)       
+
+        cy.get('.-mx-2').contains('Search Client').click();
+        cy.get('#searchInput').type(firstName);
+        cy.get('.flex-shrink-0').contains("Search").click();
+        cy.wait(2000)
+        cy.get('.sm\\:p-6 > .px-10').contains('View').click()
+        cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
+
+
+
                   })
              
                 
@@ -195,8 +206,71 @@ context('Actions', () => {
        }
       })
 
-        
-    
+      it('.Register AEFI', () => {
+        cy.viewport(1280, 720);
+        cy.wait(5000);
+        const { firstName, lastName, careGiverName } = clientData;
+         // cy.get('.bg-gray-50').contains("Search Client").click()
+            //  cy.wait(2500)       
+  
+          cy.get('.-mx-2').contains('Search Client').click();
+          cy.get('#searchInput').type(firstName);
+          cy.get('.flex-shrink-0').contains("Search").click();
+          cy.wait(2000)
+          cy.get('.sm\\:p-6 > .px-10').contains('View').click()
+          cy.get(':nth-child(2) > .overflow-hidden').click()
+
+          const randomNumber = Math.random();
+          if (randomNumber < 0.5) {
+            cy.get(':nth-child(1) > .ant-radio > .ant-radio-input').click();
+               } else {
+                cy.get(':nth-child(2) > .ant-radio > .ant-radio-input').click();
+              
+          }
+       
+          
+          cy.get('#aefiType').click()//type of AEFI
+          cy.wait(1000)           
+          for (let i = 0; i < numberOfDownArrowPresses; i++) {
+            cy.get('#aefiType').type('{downarrow}').type('{enter}');
+
+          }
+
+            const details = [
+              "Fever",
+              "Swelling",
+                           ];
+            const randomIndex1 = Math.floor(Math.random() * details.length);
+            const aefiDetails = details[randomIndex1];
+            cy.get('#aefiDetails').type(aefiDetails)
+
+            cy.get('#eventOnset').click()
+            cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+              const numAvailableDates = $dateCells.length        
+              const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+              const randomDateCell = $dateCells.eq(randomIndex) 
+              randomDateCell.click()
+              })
+              cy.get('#pastMedicalHistory').type('none')
+              cy.get('button').contains('Next').click()
+              .click()
+             .click()
+              
+          const randomNumberOutcome = Math.random();
+          if (randomNumberOutcome < 0.5) {
+            cy.get('.ant-form > .px-6').contains('Treatment Given').click();
+               } else {
+            cy.get('.ant-form > .px-6').contains('Specimen collected for investigation').click();
+                }
+
+          cy.get('#aefiOutcome').click()
+          for (let i = 0; i < numberOfDownArrowPresses; i++) {
+            cy.get('#aefiOutcome').type('{downarrow}').type('{enter}');
+
+          }
+          cy.get('button').contains('Submit').click()
+
+      })
   })
     
           
