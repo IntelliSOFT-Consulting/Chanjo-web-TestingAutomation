@@ -102,28 +102,31 @@ const randomNumberOfKeyPresses = Math.floor(Math.random() * 5) + 1;
             "BUNGOMA",
             "KISII",
                ];
-          const randomIndex1 = Math.floor(Math.random() * county.length);
-          const randomCounty = county[randomIndex1];
- 
-          cy.get('.ant-select-selection-search-input').eq(0).type(randomCounty).type("{downarrow}").type('{Enter}');
-          //.type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');//county
-
-              cy.get('.ant-select-selection-search-input').eq(1).click()//subcounty 
-                cy.wait(1000)           
-                  for (let i = 0; i < numberOfDownArrowPresses; i++) {
-                  cy.get('.ant-select-selection-search-input').eq(1).type('{downarrow}').type('{enter}');
-                   }
-                  
-                   cy.get('.ant-select-selection-search-input').eq(2).click()//ward 
-                   cy.wait(1000)           
-                   for (let i = 0; i < numberOfDownArrowPresses; i++) {
-                   cy.get('.ant-select-selection-search-input').eq(2).type('{downarrow}').type('{enter}');
-                   }
-            cy.get('button').contains('Preview').click();
-            cy.get('button').contains('Submit').click();
-            cy.wait(2500)
-            cy.get('button').contains('Close').click();
-            cy.wait(5000)
+               const randomIndex1 = Math.floor(Math.random() * county.length);
+               const randomCounty = county[randomIndex1];
+      
+               cy.get('.ant-select-selection-search-input').eq(0).type(randomCounty).type("{downarrow}").type('{Enter}');
+               //.type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');//county
+     
+                   cy.get('.ant-select-selection-search-input').eq(1).click()//subcounty 
+                     cy.wait(1000)           
+                       for (let i = 0; i < numberOfDownArrowPresses; i++) {
+                       cy.get('.ant-select-selection-search-input').eq(1).type('{downarrow}');
+                        }
+                       cy.get('.ant-select-selection-search-input').eq(1).type('{enter}');
+     
+     
+                        cy.get('.ant-select-selection-search-input').eq(2).click()//ward 
+                        cy.wait(1000)           
+                        for (let i = 0; i < numberOfDownArrowPresses; i++) {
+                        cy.get('.ant-select-selection-search-input').eq(2).type('{downarrow}');
+                        }
+                        cy.get('.ant-select-selection-search-input').eq(2).type('{enter}');
+                 cy.get('button').contains('Preview').click();
+                 cy.get('button').contains('Submit').click();
+                 cy.wait(2500)
+                 cy.get('button').contains('Close').click();
+                 cy.wait(5000)
             //cy.log()
             //cy.debug()
                     
