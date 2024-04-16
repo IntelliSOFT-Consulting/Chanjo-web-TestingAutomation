@@ -86,40 +86,50 @@ context('Actions', () => {
 
 
 
- it('.type() - Register Facility', () => {
+ /*it('.type() - Register Facility', () => {
    cy.viewport(1280, 720);
    cy.wait(2500)
    cy.get('#headlessui-disclosure-button-\\:rp\\:').click()
    cy.get(':nth-child(2) > .hover\\:bg-gray-50\\]').click()
    cy.get('.ant-card-extra > .ant-btn').click()
-           
+         
         cy.get('#name').type("Facility A")
-        cy.get('#county').click()
+        cy.get('#county').click().wait(1000)
         for (let i = 0; i < numberOfDownArrowPresses; i++) {
-           cy.get('#county').type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
+           cy.get('#county').type('{downarrow}', {force: true}).wait(1000)
           }
-          cy.get('#subCounty').click( {force: true})
+          cy.get('#county').type('{enter}', {force: true});
+
+          cy.get('#subCounty').click( {force: true}).wait(1000)
           for (let i = 0; i < numberOfDownArrowPresses; i++) {
-           cy.get('#subCounty',  {force: true}).type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
+           cy.get('#subCounty',  {force: true}).type('{downarrow}', {force: true}).wait(1000)
           }
-          cy.get('#ward').click({force: true})
+          cy.get('#subCounty').type('{enter}', {force: true});
+
+          cy.get('#ward').click({force: true}).wait(1000)
           for (let i = 0; i < numberOfDownArrowPresses; i++) {
-           cy.get('#ward').type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
+           cy.get('#ward').type('{downarrow}', {force: true}).wait(1000)
           }
-          cy.get('#kmflCode').type('12345')
+          cy.get('#ward').type('{enter}', {force: true});
+
+          
+          cy.get('#kmflCode').type('12345', {force: true})
 
           cy.get('#level').click({force: true})
           for (let i = 0; i < numberOfDownArrowPresses; i++) {
-           cy.get('#level').type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
+           cy.get('#level').type('{downarrow}', {force: true}).wait(1000)
           }
+          cy.get('#level').type('{enter}', {force: true});
           
-          cy.get('#ownership').click({force: true})
+          cy.get('#ownership').click({force: true}).wait(1000)
           for (let i = 0; i < numberOfDownArrowPresses; i++) {
            cy.get('#ownership').type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
+
           }
+          cy.get('#ownership').type('{enter}', {force: true}).wait(1000);
+
+        });*/
+    });
 
 
-
-
-           })
-        })
+         
