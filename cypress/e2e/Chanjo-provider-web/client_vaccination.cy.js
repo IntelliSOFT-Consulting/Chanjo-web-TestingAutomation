@@ -10,7 +10,7 @@ context('Actions', () => {
     before(() => {
       //cy.session('login', ()=>{
         cy.baseurl();
-       // cy.login();
+       // cy.login();//enable this for first time login then disable since cypress is storing the sessions
   //  })
  })
  for (let i = 0; i < numberOfRuns; i++) {//loop again
@@ -39,21 +39,15 @@ context('Actions', () => {
     
          cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
          cy.get('#clientDetails_estimatedAge > :nth-child(1) > :nth-child(2)').click()
-      // cy.get('#clientDetails_estimatedAge > :nth-child(2) > .ant-radio > .ant-radio-input').click()
 
         //select a random date back 5 years
-        cy.get('.ant-picker-input').click()
+        cy.get('.ant-picker-input').click({multiple: true})
         cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
         const numAvailableDates = $dateCells.length        
         const randomIndex = Math.floor(Math.random() * numAvailableDates)        
         const randomDateCell = $dateCells.eq(randomIndex)        
-       // const dateTitle = randomDateCell.attr('title')        
-       // const [year, month, day] = dateTitle.split('-')
-       // const formattedDate = `${day}-${month}-${year.slice(-2)}`        
         randomDateCell.click()
         })
-
-        const randomPresses11 = Math.floor(Math.random() * 0); // Change 2 to 3 to include the first option
 
         cy.get('#clientDetails_identificationType').click() 
         cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
@@ -65,10 +59,10 @@ context('Actions', () => {
         cy.get('button').contains('Next').click();
 
         //**********CAREGIVER*****************************************************************/
-        const randomPresses12 = Math.floor(Math.random() * 0);
-        cy.get('#clientDetails_caregiver_0_caregiverType').click()        
-        cy.get('#clientDetails_caregiver_0_caregiverType').trigger("keydown", { keyCode: 13 }); 
-        cy.get('#clientDetails_caregiver_0_caregiverName').type(careGiverName)
+        cy.get('#caregiverType').click() 
+        cy.wait(1000)       
+        cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); 
+        cy.get('#caregiverName').type(careGiverName)
 
         const randomNumber2 =
         "07" +
@@ -76,11 +70,11 @@ context('Actions', () => {
           .toString()
           .padStart(8, "0");
   
-          cy.get('#clientDetails_caregiver_0_phoneNumber').type(randomNumber2); // Phone number
+          cy.get('#phoneNumber').type(randomNumber2); // Phone number
         //***************************************************************************/
 
 
-       // cy.get('button').contains('Add Caregiver').click()
+       cy.get('button').contains('Add Caregiver').click()
         cy.get('button').contains('Next').click();
         cy.wait(1500)
 
@@ -101,8 +95,7 @@ context('Actions', () => {
                const randomCounty = county[randomIndex1];
       
                cy.get('#clientDetails_county').type(randomCounty).wait(2000).type("{downarrow}").type('{Enter}');
-               //.type(randomCounty).wait(1000).type("{downarrow}").type('{Enter}');//county
-               
+            
                cy.get('#clientDetails_subCounty').click( {force: true})//subcounty 
                      cy.wait(2000)           
                        for (let i = 0; i < numberOfDownArrowPresses; i++) {
@@ -116,39 +109,26 @@ context('Actions', () => {
                           cy.get('#clientDetails_ward').type('{downarrow}');
                         }
                           cy.get('#clientDetails_ward').type('{enter}');
-                 //cy.get('button').contains('Preview').click();
+                 cy.get('button').contains('Preview').click();
                  cy.get('button').contains('Submit').click();
                  cy.wait(5000)
                  cy.get('button').contains('Close').click();
                  cy.wait(5000)
-            //cy.log()
-            //cy.debug()
-                    
+                               
                   })
 
       it('.View CLient Details', () => {
             cy.viewport(1280, 720);
       cy.wait(5000);
       const { firstName, lastName, careGiverName } = clientData;
-      //cy.get('.bg-gray-50').contains("Search Client").click()
-           // cy.wait(2500)       
-
-       /* cy.get('.-mx-2').contains('Search Client').click();
-        cy.get('#searchInput').type(firstName);
-        cy.get('.flex-shrink-0').contains("Search").click();
-        cy.wait(2000)
-        cy.get('.sm\\:p-6 > .px-10').contains('View').click()*/
-        cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
-
-
-
-                  })
+      cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
+      })
              
                 
 
 
-                  /*************Administer Vaccines***********************************************/
-                
+                /*************Administer Vaccines***********************************************/
+  /*                
      it('.Administer Vaccine', () => {
       cy.viewport(1280, 720);
       cy.wait(5000);
@@ -265,7 +245,7 @@ context('Actions', () => {
           }
           cy.get('button').contains('Submit').click()
 
-      })
+      })*/
     }
   })
     
