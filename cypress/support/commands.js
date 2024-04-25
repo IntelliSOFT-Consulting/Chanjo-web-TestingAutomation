@@ -18,12 +18,12 @@ Cypress.Commands.add('login', () => {
   cy.get('#location').click();
   
   // Randomly select a facility
-  const randomNumber = Math.floor(Math.random() * 2);
-  if (randomNumber === 0) {
-      cy.get('.ant-select-item-option-active > .ant-select-item-option-content').click();
-  } else {
+ //const randomNumber = Math.floor(Math.random() * 2);
+ // if (randomNumber === 0) {
+    //  cy.get('.ant-select-item-option-active > .ant-select-item-option-content').click();
+//  } else {
       cy.get('[title="Facility"] > .ant-select-item-option-content').click();
-  }
+ // }
   
   // Click login button
   cy.get('.ant-btn').click();
