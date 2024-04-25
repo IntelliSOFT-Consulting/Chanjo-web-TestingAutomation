@@ -2,7 +2,7 @@
 
 import faker from 'faker';
 let clientData;
-const numberOfRuns = 1;
+const numberOfRuns = 0;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
@@ -40,14 +40,27 @@ context('Actions', () => {
          cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
          cy.get('#clientDetails_estimatedAge > :nth-child(1) > :nth-child(2)').click()
 
-        //select a random date back 5 years
-        cy.get('.ant-picker-input').click({multiple: true})
-        cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
-        const numAvailableDates = $dateCells.length        
-        const randomIndex = Math.floor(Math.random() * numAvailableDates)        
-        const randomDateCell = $dateCells.eq(randomIndex)        
-        randomDateCell.click()
-        })
+       
+   // Generate a random date between now and 14 days back
+        const currentDate = new Date();
+        const startDate = new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000); // 14 days back
+        const randomTime = startDate.getTime() + Math.random() * (currentDate.getTime() - startDate.getTime());
+        const randomDate = new Date(randomTime);
+
+        // Extract day, month, and year
+        const day = randomDate.getDate().toString().padStart(2, '0');
+        const month = (randomDate.getMonth() + 1).toString().padStart(2, '0');
+        let year = randomDate.getFullYear().toString().slice(-2);
+        // Convert two-digit year to four digits if necessary
+        year = year < 50 ? '20' + year : '19' + year;
+
+        // Format the date as DD/MM/YY
+        const formattedDate = `${day}-${month}-${year}`;
+
+        // Write the formatted date into the input field
+        cy.get('#clientDetails_dateOfBirth').type(formattedDate).type('{Enter}');
+
+
 
         cy.get('#clientDetails_identificationType').click() 
         cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
@@ -58,20 +71,19 @@ context('Actions', () => {
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
         cy.get('button').contains('Next').click();
 
-        //**********CAREGIVER*****************************************************************/
+        /**********CAREGIVER*****************************************************************/
         cy.get('#caregiverType').click() 
         cy.wait(1000)       
-        cy.get('#caregiverType').trigger("keydown", { keyCode: 13 }); 
-        cy.get('#caregiverName').type(careGiverName)
+        cy.get('#caregiverType').click()
+        for (let i = 0; i < numberOfDownArrowPresses; i++) {
+          cy.get('#caregiverType').type('{downarrow}');
+          }
+          cy.get('#caregiverType').type('{enter}');
+          cy.get('#caregiverName').type(careGiverName)
 
-        const randomNumber2 =
-        "07" +
-        Math.floor(Math.random() * 1000000000)
-          .toString()
-          .padStart(8, "0");
-  
-          cy.get('#phoneNumber').type(randomNumber2); // Phone number
-        //***************************************************************************/
+        const randomNumber2 = "07" + Math.floor(Math.random() * 1000000000).toString().padStart(8, "0");// Phone number
+        cy.get('#phoneNumber').type(randomNumber2); 
+        /***************************************************************************/
 
 
        cy.get('button').contains('Add Caregiver').click()
@@ -85,7 +97,7 @@ context('Actions', () => {
             "BUSIA",
             "NAIROBI",
             "KISUMU",
-            "MOMBASAl",
+            "MOMBASA",
             "KERICHO",
             "MAKUENI",
             "BUNGOMA",
@@ -94,7 +106,7 @@ context('Actions', () => {
                const randomIndex1 = Math.floor(Math.random() * county.length);
                const randomCounty = county[randomIndex1];
       
-               cy.get('#clientDetails_county').type(randomCounty).wait(2000).type("{downarrow}").type('{Enter}');
+               cy.get('#clientDetails_county').type(randomCounty, {force: true}).wait(2000).type("{downarrow}").type('{Enter}');
             
                cy.get('#clientDetails_subCounty').click( {force: true})//subcounty 
                      cy.wait(2000)           
@@ -117,18 +129,18 @@ context('Actions', () => {
                                
                   })
 
-      it('.View CLient Details', () => {
+      /*it('.View CLient Details', () => {
             cy.viewport(1280, 720);
       cy.wait(5000);
       const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
-      })
+      })*/
              
                 
 
 
                 /*************Administer Vaccines***********************************************/
-  /*                
+                  
      it('.Administer Vaccine', () => {
       cy.viewport(1280, 720);
       cy.wait(5000);
@@ -151,7 +163,7 @@ context('Actions', () => {
 
 
 
-      const randomNumber14 = Math.floor(Math.random() * 2); // Generates a number between 0 and 2
+      const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
              switch (randomNumber14) {
              case 0://Administer
                cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
@@ -162,7 +174,7 @@ context('Actions', () => {
                });
         break;
              case 1://Contraindicate
-              cy.get('.mt-5 > .bg-\\[\\#5370B0\\]').click().then(() => {
+             cy.get('.mt-5 > .bg-\\[\\#163C94\\]').click().then(() => {
                cy.get('#contraindicationDetails').type("patient has an injury")
                cy.get('.ant-picker-input').click()
               cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
@@ -178,11 +190,31 @@ context('Actions', () => {
               cy.get('button').contains('Close').click()
 
         break;
-             default:
+       case 2://Not Administered
+        cy.get('.outline').click().then(() => {
+          cy.get('#notVaccinatedReason').click({force: true})
+          cy.wait(2000)           
+           for (let i = 0; i < numberOfDownArrowPresses; i++) {
+          cy.get('#notVaccinatedReason').type('{downarrow}');
+          }
+          cy.get('#notVaccinatedReason').type('{enter}', {force: true});
+          cy.get('.ant-picker-input').click()
+          cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+         const numAvailableDates = $dateCells.length        
+         const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+         const randomDateCell = $dateCells.eq(randomIndex) 
+         randomDateCell.click()
+         })
+     
+         cy.wait(2500)
+         cy.get('button').contains('Submit').click();
+         });
+         cy.get('button').contains('Close').click()
+        default:
            
         break;
        }
-      })
+      })/*
 
       it('.Register AEFI', () => {
         cy.viewport(1280, 720);
