@@ -2,7 +2,7 @@
 
 import faker from 'faker';
 let clientData;
-const numberOfRuns = 0;
+const numberOfRuns = 20;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
@@ -10,7 +10,7 @@ context('Actions', () => {
     before(() => {
       //cy.session('login', ()=>{
         cy.baseurl();
-       // cy.login();//enable this for first time login then disable since cypress is storing the sessions
+        cy.login();//enable this for first time login then disable since cypress is storing the sessions
   //  })
  })
  for (let i = 0; i < numberOfRuns; i++) {//loop again
@@ -99,24 +99,24 @@ context('Actions', () => {
             "KISUMU",
             "MOMBASA",
             "KERICHO",
-            "MAKUENI",
-            "BUNGOMA",
+            "NYANDARUA",
+            "MERU",
             "KISII",
                ];
                const randomIndex1 = Math.floor(Math.random() * county.length);
                const randomCounty = county[randomIndex1];
       
-               cy.get('#clientDetails_county').type(randomCounty, {force: true}).wait(2000).type("{downarrow}").type('{Enter}');
+               cy.get('#clientDetails_county').type(randomCounty, {force: true}).wait(1000).type("{downarrow}").type('{Enter}');
             
                cy.get('#clientDetails_subCounty').click( {force: true})//subcounty 
-                     cy.wait(2000)           
+                     cy.wait(1000)           
                        for (let i = 0; i < numberOfDownArrowPresses; i++) {
                         cy.get('#clientDetails_subCounty').type('{downarrow}');
                         }
                         cy.get('#clientDetails_subCounty').type('{enter}');
                           
                         cy.get('#clientDetails_ward').click({force: true})//ward 
-                        cy.wait(2000)           
+                        cy.wait(1000)           
                         for (let i = 0; i < numberOfDownArrowPresses; i++) {
                           cy.get('#clientDetails_ward').type('{downarrow}');
                         }
@@ -124,9 +124,8 @@ context('Actions', () => {
                  cy.get('button').contains('Preview').click();
                  cy.get('button').contains('Submit').click();
                  cy.wait(5000)
-                 cy.get('button').contains('Close').click();
-                 cy.wait(5000)
-                               
+                // cy.get('button').contains('Close').click();
+                                               
                   })
 
       /*it('.View CLient Details', () => {
@@ -163,17 +162,27 @@ context('Actions', () => {
 
 
 
-      const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
+      const randomNumber14 = Math.floor(Math.random() * 4); // Generates a number between 0 and 2
              switch (randomNumber14) {
-             case 0://Administer
+             case 1://Administer
                cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+                cy.get('#vaccines_0_batchNumber').click( {force: true})
+                for (let i = 0; i < numberOfDownArrowPresses; i++) {
+                  cy.get('#vaccines_0_batchNumber').type('{downarrow}',  {force: true});
+                  }
+                  cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
+                  cy.get('#vaccines_1_batchNumber')
+                  .click( {force: true})
+                  .type('{downarrow}', {force: true}).wait(1000)
+                  .type('{enter}', {force: true});
+
                cy.wait(2500)
                cy.get('button').contains('Administer').click();
                cy.wait(2000)
-               cy.get('button').contains('Close').click()
+               //cy.get('button').contains('Close').click()
                });
         break;
-             case 1://Contraindicate
+             case 2://Contraindicate
              cy.get('.mt-5 > .bg-\\[\\#163C94\\]').click().then(() => {
                cy.get('#contraindicationDetails').type("patient has an injury")
                cy.get('.ant-picker-input').click()
@@ -190,7 +199,7 @@ context('Actions', () => {
               cy.get('button').contains('Close').click()
 
         break;
-       case 2://Not Administered
+       case 3://Not Administered
         cy.get('.outline').click().then(() => {
           cy.get('#notVaccinatedReason').click({force: true})
           cy.wait(2000)           
