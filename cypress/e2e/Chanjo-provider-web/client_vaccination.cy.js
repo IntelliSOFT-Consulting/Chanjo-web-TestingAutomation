@@ -127,51 +127,40 @@ context('Actions', () => {
                 // cy.get('button').contains('Close').click();
                                                
                   })
+       /*************Administer Vaccines***********************************************/
+                    
+      it('.Administer Vaccine', () => {
+        cy.viewport(1280, 720);
+        cy.wait(5000);
+        const { firstName, lastName, careGiverName } = clientData;
+        cy.contains('Search Client').click()
+        cy.wait(2500)       
 
-      /*it('.View CLient Details', () => {
-            cy.viewport(1280, 720);
-      cy.wait(5000);
-      const { firstName, lastName, careGiverName } = clientData;
-      cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
-      })*/
-             
-                
-
-
-                /*************Administer Vaccines***********************************************/
-                  
-     it('.Administer Vaccine', () => {
-      cy.viewport(1280, 720);
-      cy.wait(5000);
-      const { firstName, lastName, careGiverName } = clientData;
-      cy.contains('Search Client').click()
-      cy.wait(2500)       
-
-       // cy.get('.-mx-2').contains('Search Client').click();
-        cy.get('#searchInput').type(firstName);
-        cy.get('.flex-shrink-0').contains("Search").click();
-        cy.wait(2000)
-        cy.get('.sm\\:p-6 > .px-10').contains('View').click()
-        cy.wait(5000)
+        // cy.get('.-mx-2').contains('Search Client').click();
+          cy.get('#searchInput').type(firstName);
+          cy.get('.flex-shrink-0').contains("Search").click();
+          cy.wait(2000)
+          cy.get('.sm\\:p-6 > .px-10').contains('View').click()
+          cy.wait(5000)
 
 
 
-      cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
-      cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
-      cy.get('button').contains('Administer Vaccine').click();
+        cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
+        cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
+        cy.get('button').contains('Administer Vaccine').click();
 
 
 
-      const randomNumber14 = Math.floor(Math.random() * 4); // Generates a number between 0 and 2
+        const randomNumber14 = Math.floor(Math.random() * 4); // Generates a number between 0 and 2
              switch (randomNumber14) {
              case 1://Administer
-               cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+                cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
                 cy.get('#vaccines_0_batchNumber').click( {force: true})
                 for (let i = 0; i < numberOfDownArrowPresses; i++) {
-                  cy.get('#vaccines_0_batchNumber').type('{downarrow}',  {force: true});
+                cy.get('#vaccines_0_batchNumber').type('{downarrow}',  {force: true});
                   }
-                  cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
-                  cy.get('#vaccines_1_batchNumber')
+                cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
+                cy.get('#vaccines_1_batchNumber')
                   .click( {force: true})
                   .type('{downarrow}', {force: true}).wait(1000)
                   .type('{enter}', {force: true});
@@ -183,15 +172,15 @@ context('Actions', () => {
                });
         break;
              case 2://Contraindicate
-             cy.get('.mt-5 > .bg-\\[\\#163C94\\]').click().then(() => {
+               cy.get('.mt-5 > .bg-\\[\\#163C94\\]').click().then(() => {
                cy.get('#contraindicationDetails').type("patient has an injury")
                cy.get('.ant-picker-input').click()
-              cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
-              const numAvailableDates = $dateCells.length        
-              const randomIndex = Math.floor(Math.random() * numAvailableDates)        
-              const randomDateCell = $dateCells.eq(randomIndex) 
-              randomDateCell.click()
-              })
+               cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+                  const numAvailableDates = $dateCells.length        
+                  const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+                  const randomDateCell = $dateCells.eq(randomIndex) 
+                  randomDateCell.click()
+                  })
           
               cy.wait(2500)
               cy.get('button').contains('Contraindicate').click();
@@ -199,31 +188,45 @@ context('Actions', () => {
               cy.get('button').contains('Close').click()
 
         break;
-       case 3://Not Administered
-        cy.get('.outline').click().then(() => {
-          cy.get('#notVaccinatedReason').click({force: true})
-          cy.wait(2000)           
-           for (let i = 0; i < numberOfDownArrowPresses; i++) {
-          cy.get('#notVaccinatedReason').type('{downarrow}');
-          }
-          cy.get('#notVaccinatedReason').type('{enter}', {force: true});
-          cy.get('.ant-picker-input').click()
-          cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
-         const numAvailableDates = $dateCells.length        
-         const randomIndex = Math.floor(Math.random() * numAvailableDates)        
-         const randomDateCell = $dateCells.eq(randomIndex) 
-         randomDateCell.click()
-         })
+            case 3://Not Administered
+              cy.get('.outline').click().then(() => {
+              cy.get('#notVaccinatedReason').click({force: true})
+              cy.wait(2000)           
+              for (let i = 0; i < numberOfDownArrowPresses; i++) {
+              cy.get('#notVaccinatedReason').type('{downarrow}');
+              }
+              cy.get('#notVaccinatedReason').type('{enter}', {force: true});
+              cy.get('.ant-picker-input').click()
+              cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+                 const numAvailableDates = $dateCells.length        
+                 const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+                 const randomDateCell = $dateCells.eq(randomIndex) 
+                 randomDateCell.click()
+           })
      
-         cy.wait(2500)
-         cy.get('button').contains('Submit').click();
-         });
-         cy.get('button').contains('Close').click()
+            cy.wait(2500)
+            cy.get('button').contains('Submit').click();
+            });
+            cy.get('button').contains('Close').click()
+
+            break;
         default:
            
         break;
        }
-      })/*
+      })
+      
+      /*it('.View CLient Details', () => {
+            cy.viewport(1280, 720);
+      cy.wait(5000);
+      const { firstName, lastName, careGiverName } = clientData;
+      cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
+      })*/
+      
+      
+      
+      /*
+      
 
       it('.Register AEFI', () => {
         cy.viewport(1280, 720);
@@ -290,30 +293,3 @@ context('Actions', () => {
     }
   })
     
-          
-            
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
