@@ -2,7 +2,7 @@
 
 import faker from 'faker';
 let clientData;
-const numberOfRuns = 20;
+const numberOfRuns = 1;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
@@ -10,7 +10,7 @@ context('Actions', () => {
     before(() => {
       //cy.session('login', ()=>{
         cy.baseurl();
-        cy.login();//enable this for first time login then disable since cypress is storing the sessions
+        //cy.login();//enable this for first time login then disable since cypress is storing the sessions
   //  })
  })
  for (let i = 0; i < numberOfRuns; i++) {//loop again
@@ -129,7 +129,7 @@ context('Actions', () => {
                   })
        /*************Administer Vaccines***********************************************/
                     
-      it('.Administer Vaccine', () => {
+     it('.Administer Vaccine', () => {
         cy.viewport(1280, 720);
         cy.wait(5000);
         const { firstName, lastName, careGiverName } = clientData;
@@ -164,9 +164,14 @@ context('Actions', () => {
                   .click( {force: true})
                   .type('{downarrow}', {force: true}).wait(1000)
                   .type('{enter}', {force: true});
+                  cy.get('#vaccines_2_batchNumber')
+                .click( {force: true}).wait(1000)
+                .type('{downarrow}', {force: true}).wait(1000)
+                .type('{enter}', {force: true});
 
                cy.wait(2500)
                cy.get('button').contains('Administer').click();
+               cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
                cy.wait(2000)
                //cy.get('button').contains('Close').click()
                });
@@ -184,8 +189,10 @@ context('Actions', () => {
           
               cy.wait(2500)
               cy.get('button').contains('Contraindicate').click();
+             // cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
+              cy.wait(2000)
               });
-              cy.get('button').contains('Close').click()
+             // cy.get('button').contains('Close').click()
 
         break;
             case 3://Not Administered
@@ -206,8 +213,11 @@ context('Actions', () => {
      
             cy.wait(2500)
             cy.get('button').contains('Submit').click();
+            cy.get('.ant-popconfirm-buttons > .ant-btn-primary')
+            .click()
+            cy.wait(2000)
             });
-            cy.get('button').contains('Close').click()
+            //cy.get('button').contains('Close').click()
 
             break;
         default:
@@ -216,15 +226,108 @@ context('Actions', () => {
        }
       })
       
-      /*it('.View CLient Details', () => {
+     it ('Update CLient age', () => {
             cy.viewport(1280, 720);
       cy.wait(5000);
-      const { firstName, lastName, careGiverName } = clientData;
+     //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
-      })*/
-      
-      
-      
+      cy.wait(5000)
+      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.wait(5000)
+      //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('#clientDetails_estimatedAge > :nth-child(2) > .ant-radio > .ant-radio-input').click()
+      cy.get('#clientDetails_weeks').clear()
+      cy.get('#clientDetails_weeks').type("6").type('{Enter}')
+      cy.get('button').contains('Next').click();
+      cy.get('button').contains('Next').click();
+      cy.get('button').contains('Preview').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(5000)
+      cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+        cy.wrap($checkbox).check({ force: true });
+      });
+  
+      cy.get('button').contains('Administer Vaccine').click();
+
+
+
+      const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
+           switch (randomNumber14) {
+           case 1://Administer
+              cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+              cy.get('#vaccines_0_batchNumber').click( {force: true})
+              for (let i = 0; i < numberOfDownArrowPresses; i++) {
+              cy.get('#vaccines_0_batchNumber').type('{downarrow}',  {force: true});
+                }
+              cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
+              cy.get('#vaccines_1_batchNumber')
+                .click( {force: true})
+                .type('{downarrow}', {force: true}).wait(1000)
+                .type('{enter}', {force: true});
+                cy.get('#vaccines_2_batchNumber')
+                .click( {force: true}).wait(1000)
+                .type('{downarrow}', {force: true}).wait(1000)
+                .type('{enter}', {force: true});
+
+             cy.wait(2500)
+             cy.get('button').contains('Administer').click();
+             cy.get('.ant-popconfirm-buttons > .ant-btn-primary')
+             .click()
+             cy.wait(2000)
+             //cy.get('button').contains('Close').click()
+             });
+      break;
+           case 2://Contraindicate
+             cy.get('.mt-5 > .bg-\\[\\#163C94\\]').click().then(() => {
+             cy.get('#contraindicationDetails').type("patient has an injury")
+             cy.get('.ant-picker-input').click()
+             cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+                const numAvailableDates = $dateCells.length        
+                const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+                const randomDateCell = $dateCells.eq(randomIndex) 
+                randomDateCell.click()
+                })
+        
+            cy.wait(2500)
+            cy.get('button').contains('Contraindicate').click();
+           // cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
+            cy.wait(2000)
+            });
+           // cy.get('button').contains('Close').click()
+
+      break;
+          case 3://Not Administered
+            cy.get('.outline').click().then(() => {
+            cy.get('#notVaccinatedReason').click({force: true})
+            cy.wait(2000)           
+            for (let i = 0; i < numberOfDownArrowPresses; i++) {
+            cy.get('#notVaccinatedReason').type('{downarrow}');
+            }
+            cy.get('#notVaccinatedReason').type('{enter}', {force: true});
+            cy.get('.ant-picker-input').click()
+            cy.get('.ant-picker-cell:not(.ant-picker-cell-disabled)').should('exist').then($dateCells => {
+               const numAvailableDates = $dateCells.length        
+               const randomIndex = Math.floor(Math.random() * numAvailableDates)        
+               const randomDateCell = $dateCells.eq(randomIndex) 
+               randomDateCell.click()
+         })
+   
+          cy.wait(2500)
+          cy.get('button').contains('Submit').click();
+          cy.get('.ant-popconfirm-buttons > .ant-btn-primary')
+            .click()
+            cy.wait(2000)
+  
+          });
+          //cy.get('button').contains('Close').click()
+
+          break;
+      default:
+         
+      break;
+     }
+    })
+   
       /*
       
 
