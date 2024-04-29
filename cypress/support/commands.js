@@ -6,15 +6,15 @@ Cypress.Commands.add("baseurl", () => {
 Cypress.Commands.add('login', () => {
   // Randomly select a user ID
   const user = [
-      "1010111",
-      "1234567",
+      "90210999"
+     
   ];
   const randomIndex = Math.floor(Math.random() * user.length);
   const randomUser = user[randomIndex];
 
   // Type user ID, password, and select location
   cy.get('#idNumber').type(randomUser).wait(1000);
-  cy.get('#password').type("password");
+  cy.get('#password').type("password99");
   cy.get('#location').click();
   
   // Randomly select a facility
@@ -28,6 +28,21 @@ Cypress.Commands.add('login', () => {
   // Click login button
   cy.get('.ant-btn').click();
 });
+
+
+
+Cypress.Commands.add("typeWithClear", { prevSubject: true }, (subject, text) => {
+  // Clear the field using cy.clear() if it already has data
+  cy.wrap(subject).then((element) => {
+    if (element.val() !== "") {
+      cy.wrap(element).clear();
+    }
+  });
+
+  // Type the specified text into the field
+  cy.wrap(subject).type(text);
+});
+
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // Suppress uncaught exceptions
