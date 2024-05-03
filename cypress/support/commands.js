@@ -29,8 +29,6 @@ Cypress.Commands.add('login', () => {
   cy.get('.ant-btn').click();
 });
 
-
-
 Cypress.Commands.add("typeWithClear", { prevSubject: true }, (subject, text) => {
   // Clear the field using cy.clear() if it already has data
   cy.wrap(subject).then((element) => {
@@ -43,8 +41,7 @@ Cypress.Commands.add("typeWithClear", { prevSubject: true }, (subject, text) => 
   cy.wrap(subject).type(text);
 });
 
-
 Cypress.on('uncaught:exception', (err, runnable) => {
   // Suppress uncaught exceptions
   return false;
-});
+})
