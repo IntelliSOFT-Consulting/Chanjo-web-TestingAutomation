@@ -39,7 +39,19 @@ context('Actions', () => {
         clientData = { firstName, lastName, careGiverName };       
     
          cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
-         cy.get('#clientDetails_estimatedAge > :nth-child(1) > :nth-child(2)').click()
+         //cy.get('#clientDetails_estimatedAge > :nth-child(1) > :nth-child(2)').click()
+         
+         cy.get('#clientDetails_identificationType').click() 
+         cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
+
+         
+        // Generate a random 10-digit number
+        const randomNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
+        const randomNumberString = randomNumber.toString();
+        cy.get('#clientDetails_identificationNumber').type(randomNumberString);
+
+        cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
+ 
 
        
    // Generate a random date between now and 14 days back
@@ -63,13 +75,7 @@ context('Actions', () => {
 
 
 
-        cy.get('#clientDetails_identificationType').click() 
-        cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
-
-        // Generate a random 10-digit number
-        const randomNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
-        const randomNumberString = randomNumber.toString();
-        cy.get('#clientDetails_identificationNumber').type(randomNumberString);
+        
         cy.get('button').contains('Next').click();
 
         /**********CAREGIVER*****************************************************************/
@@ -171,7 +177,7 @@ context('Actions', () => {
                 .type('{downarrow}', {force: true}).wait(1000)
                 .type('{enter}', {force: true});*/
 
-               cy.wait(2500)
+              cy.wait(2500)
                cy.get('button').contains('Administer').click();
                cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
                cy.wait(2000)
@@ -240,7 +246,7 @@ context('Actions', () => {
       cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
-      cy.get('#clientDetails_estimatedAge > :nth-child(2) > .ant-radio > .ant-radio-input').click()
+      cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
       cy.get('#clientDetails_weeks').clear()
       cy.get('#clientDetails_weeks').type("6").type('{Enter}')
       cy.get('button').contains('Next').click();
