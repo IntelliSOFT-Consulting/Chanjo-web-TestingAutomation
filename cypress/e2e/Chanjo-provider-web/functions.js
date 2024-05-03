@@ -12,9 +12,9 @@ function administerVaccine(batchNumber, vaccineType) {
          }
        cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
        cy.get('#vaccines_1_batchNumber').click( {force: true}).type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
-       cy.get('#vaccines_2_batchNumber').should('exist').click( {force: true}).wait(1000)
+      /* cy.get('#vaccines_2_batchNumber').should('exist').click( {force: true}).wait(1000)
        .type('{downarrow}', {force: true}).wait(1000)
-       .type('{enter}', {force: true});
+       .type('{enter}', {force: true});*/
     
      cy.wait(2500)
       cy.get('button').contains('Administer').click();
@@ -75,7 +75,7 @@ function administerVaccine(batchNumber, vaccineType) {
      }
   }
 
-  
+ 
   module.exports = {
     administerVaccine,
   };
