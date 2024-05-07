@@ -154,7 +154,7 @@ context('Actions', () => {
 
 
 
-        cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
+       cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
         cy.get(':nth-child(2) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
         cy.get('button').contains('Administer Vaccine').click();
 
@@ -189,7 +189,7 @@ context('Actions', () => {
       administerVaccine('1234567890', 0);
 
 
-   /*   const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
+      const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
       switch (randomNumber14) {
       case 0://Administer
          cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
@@ -263,10 +263,10 @@ context('Actions', () => {
       default:
       
       break;
-       }*/
+       }
   
        
-      cy.wait(10000)
+       cy.wait(10000)
      })
 
 
@@ -345,7 +345,7 @@ cy.wait(5000)
 cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
 cy.get('#clientDetails_years').clear()
 cy.get('#clientDetails_months').clear()
-cy.get('#clientDetails_months').type("7").type('{Enter}')
+cy.get('#clientDetails_months').type("6").type('{Enter}')
 cy.get('#clientDetails_weeks').clear()
 
 cy.get('button').contains('Next').click();
@@ -488,6 +488,13 @@ administerVaccine('1234567890', 0);
      })
 
 it ('Administer at 24 Months', () => {
+  cy.viewport(1280, 720);
+  cy.wait(5000);
+  //      const { firstName, lastName, careGiverName } = clientData;
+  cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
+  cy.wait(5000)
+  cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+  cy.wait(5000)
   cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
   cy.get('#clientDetails_years').clear()
 cy.get('#clientDetails_months').clear()
@@ -498,10 +505,16 @@ cy.get('button').contains('Next').click();
 cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
+cy.get('.open-modal-button').click();
 
-cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
-  cy.wrap($checkbox).check({ force: true });
-});
+cy.get('tbody.ant-table-tbody')
+ .find('tr.ant-table-row')
+ .find('td')
+ .eq(0)
+ .find('label')
+ .find('input[type="checkbox"]')
+ .check({ force: true });
+
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
 
@@ -509,35 +522,7 @@ administerVaccine('1234567890', 0);
       cy.wait(10000)
      })
 
-it ('Administer at 24 Months', () => {
-  cy.viewport(1280, 720);
-cy.wait(5000);
-//      const { firstName, lastName, careGiverName } = clientData;
-cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
-cy.wait(5000)
-cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
-cy.wait(5000)
-//cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
-cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
-cy.get('#clientDetails_years').clear()
-cy.get('#clientDetails_months').clear()
-cy.get('#clientDetails_weeks').clear()
-cy.get('#clientDetails_weeks').type("97").type('{Enter}')
-cy.get('button').contains('Next').click();
-cy.get('button').contains('Next').click();
-cy.get('button').contains('Preview').click();
-cy.get('button').contains('Submit').click();
-cy.wait(5000)
 
-cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
-  cy.wrap($checkbox).check({ force: true });
-});
-cy.get('button').contains('Administer Vaccine').click();
-administerVaccine('1234567890', 0);
-
-       
-      cy.wait(10000)
-     })
       /*
       
 
