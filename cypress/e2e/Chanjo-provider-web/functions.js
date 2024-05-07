@@ -33,14 +33,12 @@ function administerVaccine(batchNumber, vaccineType) {
          randomDateCell.click()
          })
     
-     cy.wait(2500)
-     cy.get('button').contains('Contraindicate').click();
-     cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
-    // cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
-     cy.wait(2000)
+      cy.wait(2500)
+      cy.get('button').contains('Contraindicate').click();
+      cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
+      cy.wait(2000)
      });
-    // cy.get('button').contains('Close').click()
-    
+   
     break;
     case 2://Not Administered
      cy.get('.outline').click().then(() => {
@@ -58,14 +56,13 @@ function administerVaccine(batchNumber, vaccineType) {
         randomDateCell.click()
     })
     
-    cy.wait(2500)
-    cy.get('button').contains('Submit').click();
-    cy.get('.ant-popconfirm-buttons > .ant-btn-primary')
-    .click()
-    cy.wait(2000)
+      cy.wait(2500)
+      cy.get('button').contains('Submit').click();
+      cy.get('.ant-popconfirm-buttons > .ant-btn-primary')
+      .click()
+      cy.wait(2000)
     });
-    //cy.get('button').contains('Close').click()
-    
+   
     break;
     default:
     
