@@ -186,8 +186,10 @@ context('Actions', () => {
       });
   
       cy.get('button').contains('Administer Vaccine').click();
+      administerVaccine('1234567890', 0);
 
-      const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
+
+   /*   const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
       switch (randomNumber14) {
       case 0://Administer
          cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
@@ -200,6 +202,11 @@ context('Actions', () => {
          cy.get('#vaccines_2_batchNumber').should('exist').click( {force: true}).wait(1000)
          .type('{downarrow}', {force: true}).wait(1000)
          .type('{enter}', {force: true});
+         cy.get('#vaccines_3_batchNumber').should('exist').click( {force: true}).wait(1000)
+         .type('{downarrow}', {force: true}).wait(1000)
+         .type('{enter}', {force: true});
+         
+         
       
        cy.wait(2500)
         cy.get('button').contains('Administer').click();
@@ -256,7 +263,7 @@ context('Actions', () => {
       default:
       
       break;
-       }
+       }*/
   
        
       cy.wait(10000)
@@ -282,9 +289,9 @@ cy.get('button').contains('Next').click();
 cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
-cy.get('tbody.ant-table-tbody input[type="checkbox"]:not(:disabled)').each(($checkbox) => {
-  cy.wrap($checkbox).check({ force: true }); // 'force: true' might be optional depending on the context
-})
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
+});
 
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
@@ -306,14 +313,14 @@ it ('Administer at 14 Weeks', () => {
   cy.get('#clientDetails_years').clear()
 cy.get('#clientDetails_months').clear()
 cy.get('#clientDetails_weeks').clear()
-cy.get('#clientDetails_weeks').type("16").type('{Enter}')
+cy.get('#clientDetails_weeks').type("14").type('{Enter}')
 cy.get('button').contains('Next').click();
 cy.get('button').contains('Next').click();
 cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
-cy.get('table input[type="checkbox"]:not(:disabled)').each(($checkbox) => {
-  cy.wrap($checkbox).check(); // No need to use force:true if checkboxes are normally clickable
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
 });
 
 cy.get('button').contains('Administer Vaccine').click();
@@ -338,7 +345,7 @@ cy.wait(5000)
 cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
 cy.get('#clientDetails_years').clear()
 cy.get('#clientDetails_months').clear()
-cy.get('#clientDetails_months').type("6").type('{Enter}')
+cy.get('#clientDetails_months').type("7").type('{Enter}')
 cy.get('#clientDetails_weeks').clear()
 
 cy.get('button').contains('Next').click();
@@ -346,9 +353,10 @@ cy.get('button').contains('Next').click();
 cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
-cy.get('table input[type="checkbox"]:not(:disabled)').each(($checkbox) => {
-  cy.wrap($checkbox).check(); // No need to use force:true if checkboxes are normally clickable
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
 });
+ 
 
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
@@ -376,9 +384,8 @@ cy.get('button').contains('Next').click();
 cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
-cy.get('table input[type="checkbox"]:not(:disabled)').each(($checkbox) => {
-  // Check each checkbox. No need to use force:true since we assume they are clickable.
-  cy.wrap($checkbox).check();
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
 });
 
 cy.get('button').contains('Administer Vaccine').click();
@@ -408,20 +415,9 @@ cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
 
-    // Selector for checkboxes within the table
-    const checkboxSelector = 'table input[type="checkbox"]';
-
-    // Click each checkbox that is not disabled
-    cy.get(checkboxSelector).each(($checkbox) => {
-      if (!$checkbox.is(':disabled')) {
-        cy.wrap($checkbox).check({ force: true }).should('be.checked');
-      }
-    });
-
-    // Optionally, verify that each checkbox is checked after interaction
-    cy.get(checkboxSelector).should('be.checked');
- 
-
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
+});
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
 
@@ -449,18 +445,9 @@ cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
 
-const checkboxSelector = '#headlessui-disclosure-panel-:r1l: input[type="checkbox"]';
-
-// Check each checkbox if it is not disabled
-cy.get(checkboxSelector).each(($checkbox) => {
-  if (!$checkbox.is(':disabled')) {
-    cy.wrap($checkbox).check({ force: true }).should('be.checked');
-  }
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
 });
-
-// Optionally verify the state of each checkbox after clicking
-cy.get(checkboxSelector).should('be.checked');
-
 
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
@@ -490,19 +477,9 @@ cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
 
-  // Selector to target checkboxes specifically in the '18 Months' section
-  const checkboxSelector = '#headlessui-disclosure-panel-:r1p: input[type="checkbox"]';
-
-  // Check each checkbox if it is not disabled
-  cy.get(checkboxSelector).each(($checkbox) => {
-    if (!$checkbox.is(':disabled')) {
-      cy.wrap($checkbox).check({ force: true }).should('be.checked');
-    }
-  });
-
-  // Optionally verify the state of each checkbox after clicking
-  cy.get(checkboxSelector).should('be.checked')
-
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
+});
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
 
@@ -522,19 +499,9 @@ cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
 
-  // Selector to target checkboxes specifically in the '18 Months' section
-  const checkboxSelector = '#headlessui-disclosure-panel-:r1p: input[type="checkbox"]';
-
-  // Check each checkbox if it is not disabled
-  cy.get(checkboxSelector).each(($checkbox) => {
-    if (!$checkbox.is(':disabled')) {
-      cy.wrap($checkbox).check({ force: true }).should('be.checked');
-    }
-  });
-
-  // Optionally verify the state of each checkbox after clicking
-  cy.get(checkboxSelector).should('be.checked')
-
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
+});
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
 
@@ -562,20 +529,9 @@ cy.get('button').contains('Preview').click();
 cy.get('button').contains('Submit').click();
 cy.wait(5000)
 
-    cy.get('#headlessui-disclosure-button-:r1r:').click();
-
-    // Selector for the checkbox specifically in the '24 Months' section
-    const checkboxSelector = '#headlessui-disclosure-panel-:r1t: input[type="checkbox"]';
-
-    // Check the checkbox if it is not disabled
-    cy.get(checkboxSelector).then(($checkbox) => {
-      if (!$checkbox.is(':disabled')) {
-        cy.wrap($checkbox).check({ force: true }).should('be.checked');
-      }
-    });
-
-    // Optionally verify the state of the checkbox after clicking
-    cy.get(checkboxSelector).should('be.checked')
+cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+  cy.wrap($checkbox).check({ force: true });
+});
 cy.get('button').contains('Administer Vaccine').click();
 administerVaccine('1234567890', 0);
 

@@ -5,16 +5,14 @@ function administerVaccine(batchNumber, vaccineType) {
     const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
     switch (randomNumber14) {
     case 0://Administer
-       cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
-       cy.get('#vaccines_0_batchNumber').click( {force: true})
-       for (let i = 0; i < numberOfDownArrowPresses; i++) {
-       cy.get('#vaccines_0_batchNumber').type('{downarrow}',  {force: true});
-         }
-       cy.get('#vaccines_0_batchNumber').type('{enter}', {force: true});
-       cy.get('#vaccines_1_batchNumber').click( {force: true}).type('{downarrow}', {force: true}).wait(1000).type('{enter}', {force: true});
-      /* cy.get('#vaccines_2_batchNumber').should('exist').click( {force: true}).wait(1000)
-       .type('{downarrow}', {force: true}).wait(1000)
-       .type('{enter}', {force: true});*/
+    cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+      cy.get('[id^="vaccines_"][id$="_batchNumber"]').each(($batchNumberField, index) => {
+        cy.wrap($batchNumberField).click({ force: true });
+        for (let i = 0; i < numberOfDownArrowPresses; i++) {
+          cy.wrap($batchNumberField).type('{downarrow}', { force: true });
+        }
+        cy.wrap($batchNumberField).type('{enter}', { force: true });
+      });
     
      cy.wait(2500)
       cy.get('button').contains('Administer').click();
