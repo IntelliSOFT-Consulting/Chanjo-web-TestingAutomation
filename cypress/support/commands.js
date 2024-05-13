@@ -22,7 +22,7 @@ Cypress.Commands.add('login', () => {
  // if (randomNumber === 0) {
     //  cy.get('.ant-select-item-option-active > .ant-select-item-option-content').click();
 //  } else {
-      cy.get('[title="Facility"] > .ant-select-item-option-content').click();
+      cy.get('[title="Outreach"] > .ant-select-item-option-content').click();
  // }
   
   // Click login button

@@ -6,6 +6,8 @@ function administerVaccine(batchNumber, vaccineType) {
     switch (randomNumber14) {
     case 0://Administer
     cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {
+      const age = Math.floor(Math.random() * 3) + 3;
+      cy.get('#currentWeight').type(age);
       cy.get('[id^="vaccines_"][id$="_batchNumber"]').each(($batchNumberField, index) => {
         cy.wrap($batchNumberField).click({ force: true });
         for (let i = 0; i < numberOfDownArrowPresses; i++) {
