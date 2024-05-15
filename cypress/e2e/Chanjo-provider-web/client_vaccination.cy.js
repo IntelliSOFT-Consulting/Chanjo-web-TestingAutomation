@@ -111,14 +111,14 @@ context('Actions', () => {
                cy.get('#clientDetails_county').type(randomCounty, {force: true}).wait(1000).type("{downarrow}").type('{Enter}');
             
                cy.get('#clientDetails_subCounty').click( {force: true})//subcounty 
-                     cy.wait(1000)           
+                     cy.wait(3000)           
                        for (let i = 0; i < numberOfDownArrowPresses; i++) {
                         cy.get('#clientDetails_subCounty').type('{downarrow}');
                         }
                         cy.get('#clientDetails_subCounty').type('{enter}');
                           
                         cy.get('#clientDetails_ward').click({force: true})//ward 
-                        cy.wait(1000)           
+                        cy.wait(3000)           
                         for (let i = 0; i < numberOfDownArrowPresses; i++) {
                           cy.get('#clientDetails_ward').type('{downarrow}');
                         }
