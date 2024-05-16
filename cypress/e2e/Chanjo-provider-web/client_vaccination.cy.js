@@ -3,7 +3,7 @@
 import faker from 'faker';
 const { administerVaccine } = require('./functions');
 let clientData;
-const numberOfRuns = 1;
+const numberOfRuns = 2;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {

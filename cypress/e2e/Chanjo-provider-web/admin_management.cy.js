@@ -71,16 +71,16 @@ context('Actions', () => {
            cy.get('#facility').type('{Enter}' ,{force: true});
            cy.wait(1000)
 
-          cy.get('#roleGroup').click({force: true})
+           cy.get('#roleGroup').click({force: true})
            for (let i = 0; i < numberOfDownArrowPresses; i++) {
             cy.get('#roleGroup').type('{downarrow}', {force: true})
            }
            cy.get('#roleGroup').type('{Enter}', {force: true});
            cy.wait(1000)
 
-        cy.get('button').contains('Submit').click()   
+          cy.get('button').contains('Submit').click()   
 
-        clientData = { firstName, lastName, familyName };       
+          clientData = { firstName, lastName, familyName };       
     
            })
 
