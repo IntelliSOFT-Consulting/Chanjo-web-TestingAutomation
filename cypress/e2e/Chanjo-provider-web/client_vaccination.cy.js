@@ -38,20 +38,8 @@ context('Actions', () => {
         clientData = { firstName, lastName, careGiverName };       
     
          cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
-         cy.get('#clientDetails_identificationType').click() 
-         cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
-
-         
-        // Generate a random 10-digit number
-        const randomNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
-        const randomNumberString = randomNumber.toString();
-        cy.get('#clientDetails_identificationNumber').type(randomNumberString);
-
-        cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
- 
-
-       
-   // Generate a random date between now and 14 days back
+         cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
+         // Generate a random date between now and 14 days back
         const currentDate = new Date();
         const startDate = new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000); // 14 days back
         const randomTime = startDate.getTime() + Math.random() * (currentDate.getTime() - startDate.getTime());
@@ -68,7 +56,21 @@ context('Actions', () => {
         const formattedDate = `${day}-${month}-${year}`;
 
         // Write the formatted date into the input field
-        cy.get('#clientDetails_dateOfBirth').type(formattedDate).type('{Enter}');
+        cy.get('#clientDetails_dateOfBirth').type(formattedDate).type('{Enter}');   
+
+         cy.get('#clientDetails_identificationType').click() 
+         cy.get('#clientDetails_identificationType').trigger("keydown", { keyCode: 13 }); // Enter key  
+
+         
+        // Generate a random 10-digit number
+        const randomNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
+        const randomNumberString = randomNumber.toString();
+        cy.get('#clientDetails_identificationNumber').type(randomNumberString);
+
+ 
+
+       
+   
  
         cy.get('button').contains('Next').click();
 

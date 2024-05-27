@@ -51,8 +51,7 @@ context('Actions', () => {
         const randomNumberString = randomNumber.toString();
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
 
-        cy.get('#clientDetails_vaccineType > :nth-child(2) > .ant-radio > .ant-radio-input').click()
- 
+        cy.get('#clientDetails_vaccineType > :nth-child(2) > .ant-radio > .ant-radio-input').click({force: true}) 
 
        
          // Generate a random date between now and 14 days back
