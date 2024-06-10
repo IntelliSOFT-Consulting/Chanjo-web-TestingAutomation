@@ -3,14 +3,14 @@
 import faker from 'faker';
 const { administerVaccine } = require('./functions');
 let clientData;
-const numberOfRuns = 2;
+const numberOfRuns = 5;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
     before(() => {
       //cy.session('login', ()=>{
         cy.baseurl();
-       // cy.login();
+      // cy.login();
   //  })
  })
  for (let i = 0; i < numberOfRuns; i++) {//loop again
@@ -67,9 +67,6 @@ context('Actions', () => {
         const randomNumberString = randomNumber.toString();
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
 
- 
-
-       
    
  
         cy.get('button').contains('Next').click();
