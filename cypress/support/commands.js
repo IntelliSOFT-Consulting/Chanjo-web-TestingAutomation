@@ -45,3 +45,5 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   // Suppress uncaught exceptions
   return false;
 })
+
+
