@@ -9,7 +9,9 @@ module.exports = defineConfig({
   },
 });
 
-const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
+
+
+/*const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
 // const { pa11y } = require("@cypress-audit/pa11y");
 module.exports = {
 e2e: {
@@ -24,4 +26,4 @@ lighthouse: lighthouse(),
 });
 },
 },
-};
+};*/

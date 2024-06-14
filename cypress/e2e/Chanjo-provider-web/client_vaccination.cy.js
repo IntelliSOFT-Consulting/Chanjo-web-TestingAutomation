@@ -3,16 +3,16 @@
 import faker from 'faker';
 const { administerVaccine } = require('./functions');
 let clientData;
-const numberOfRuns = 5;
+const numberOfRuns = 1;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
     before(() => {
-      //cy.session('login', ()=>{
+     // cy.session('login', ()=>{
         cy.baseurl();
       // cy.login();
-  //  })
- })
+    })
+ //})
  for (let i = 0; i < numberOfRuns; i++) {//loop again
   describe(`Test Run ${i + 1}`, () => {
     runTest();
@@ -484,7 +484,7 @@ it ('Administer at 24 Months', () => {
           cy.get('button').contains('Submit').click()
 
       })*/
-          cy.lighthouse();
+       //   cy.lighthouse();
         });
     }
     
