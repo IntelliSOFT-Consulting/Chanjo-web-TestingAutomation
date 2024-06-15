@@ -10,7 +10,7 @@ context('Actions', () => {
     before(() => {
      // cy.session('login', ()=>{
         cy.baseurl();
-      // cy.login();
+       //cy.login();
     })
  //})
  for (let i = 0; i < numberOfRuns; i++) {//loop again
