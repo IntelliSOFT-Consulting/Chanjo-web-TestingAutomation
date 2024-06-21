@@ -151,7 +151,7 @@ context('Actions', () => {
      //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -178,7 +178,7 @@ context('Actions', () => {
       cy.wait(5000);
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -208,7 +208,8 @@ it ('Administer at 14 Weeks', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
+      
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -241,7 +242,7 @@ it ('Administer at 6 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -272,7 +273,8 @@ it ('Administer at 7 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
+
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -302,7 +304,7 @@ it ('Administer at 7 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -332,7 +334,7 @@ it ('Administer at 7 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -364,7 +366,7 @@ it ('Administer at 18 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
@@ -394,7 +396,7 @@ it ('Administer at 24 Months', () => {
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
-      cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
+      cy.get('.text-2xl > .ant-btn').click()
       cy.wait(5000)
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
       cy.get('#clientDetails_years').clear()
