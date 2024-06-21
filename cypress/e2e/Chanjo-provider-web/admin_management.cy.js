@@ -30,17 +30,18 @@ context('Actions', () => {
     const lastName = faker.name.lastName();
     const randomEmail = faker.internet.email();
     const randomPhoneNumber = faker.phone.phoneNumberFormat();
+    const randomNumber = faker.datatype.number({ min: 10000000, max: 99999999 })
 
 
  
    cy.wait(2500)
    cy.get('#headlessui-disclosure-button-\\:r3\\:').click()
    cy.get('div[data-headlessui-state="open"]').contains('Add User').click()
-   cy.get('.ml-4').click()
+   cy.get('.ant-card-extra > .ant-btn').click()
         cy.wait(2500)       
         cy.get('#firstName').type(firstName)
         cy.get('#lastName').type(familyName)
-        cy.get('#username').type(familyName)
+        cy.get('#idNumber').type(randomNumber)
         cy.get('#phoneNumber').type('0712345678')
         cy.get('#email').type(randomEmail)
         cy.get('#phoneNumber').type(randomPhoneNumber)
@@ -84,7 +85,7 @@ context('Actions', () => {
     
            })
 
-
+          
 
  /*it('.type() - Register Facility', () => {
    cy.viewport(1280, 720);
