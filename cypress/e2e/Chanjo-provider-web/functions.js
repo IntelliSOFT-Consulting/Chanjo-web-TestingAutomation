@@ -70,6 +70,8 @@ function administerVaccine(batchNumber, vaccineType) {
     
     break;
      }
+     cy.wait(10000)
+
   }
 
  

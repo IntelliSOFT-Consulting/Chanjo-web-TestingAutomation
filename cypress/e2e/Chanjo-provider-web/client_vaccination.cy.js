@@ -141,8 +141,6 @@ context('Actions', () => {
 
         administerVaccine('1234567890', 0);
 
-       
-       cy.wait(10000)
       })
       
      it ('Administer at 6 Weeks', () => {
@@ -168,8 +166,7 @@ context('Actions', () => {
   
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
-      cy.wait(10000)
-       
+           
      })
 
 
@@ -198,8 +195,6 @@ context('Actions', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-            
-            cy.wait(10000)
      })
 
 it ('Administer at 14 Weeks', () => {
@@ -231,8 +226,6 @@ it ('Administer at 14 Weeks', () => {
 
       administerVaccine('1234567890', 0);
 
-       
-      cy.wait(10000)
      })
 
 
@@ -263,8 +256,6 @@ it ('Administer at 6 Months', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-            
-            cy.wait(10000)
           })
 
 it ('Administer at 7 Months', () => {
@@ -279,24 +270,22 @@ it ('Administer at 7 Months', () => {
       //cy.get('.text-2xl > .bg-\\[\\#163C94\\]').click()
       cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
       cy.get('#clientDetails_years').clear()
-    cy.get('#clientDetails_months').clear()
-    cy.get('#clientDetails_months').type("7").type('{Enter}')
-    cy.get('#clientDetails_weeks').clear()
-    cy.get('button').contains('Next').click();
-    cy.get('button').contains('Next').click();
-    cy.get('button').contains('Preview').click();
-    cy.get('button').contains('Submit').click();
-    cy.wait(5000)
-    cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
-      cy.wrap($checkbox).check({ force: true });
-    });
+      cy.get('#clientDetails_months').clear()
+      cy.get('#clientDetails_months').type("7").type('{Enter}')
+      cy.get('#clientDetails_weeks').clear()
+      cy.get('button').contains('Next').click();
+      cy.get('button').contains('Next').click();
+      cy.get('button').contains('Preview').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(5000)
+      cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+        cy.wrap($checkbox).check({ force: true });
+        });
 
-    cy.get('button').contains('Administer Vaccine').click();
-    administerVaccine('1234567890', 0);
+      cy.get('button').contains('Administer Vaccine').click();
+      administerVaccine('1234567890', 0);
 
-          
-          cy.wait(10000)
-        })
+         })
 
     it ('Administer at 9 Months', () => {
     cy.viewport(1280, 720);
@@ -325,7 +314,6 @@ it ('Administer at 7 Months', () => {
       administerVaccine('1234567890', 0);
 
             
-            cy.wait(10000)
           })
 
     it ('Administer at 12 Months', () => {
@@ -356,7 +344,6 @@ it ('Administer at 7 Months', () => {
       administerVaccine('1234567890', 0);
 
             
-            cy.wait(10000)
         })
 
 
@@ -387,7 +374,6 @@ it ('Administer at 18 Months', () => {
       administerVaccine('1234567890', 0);
 
        
-      cy.wait(10000)
      })
 
 it ('Administer at 24 Months', () => {
@@ -415,10 +401,38 @@ it ('Administer at 24 Months', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-            
-            cy.wait(10000)
-
           })
+          
+
+
+          it ('Administer Deworming Dose 4 at 30 Months', () => {
+            cy.viewport(1280, 720);
+            cy.wait(5000);
+            //      const { firstName, lastName, careGiverName } = clientData;
+            cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
+            cy.wait(5000)
+            cy.get('.text-2xl > .ant-btn').click()
+            cy.wait(5000)
+            cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
+            cy.get('#clientDetails_years').clear()
+            cy.get('#clientDetails_months').clear()
+            cy.get('#clientDetails_months').type("35").type('{Enter}')
+            cy.get('#clientDetails_weeks').clear()
+            cy.get('button').contains('Next').click();
+            cy.get('button').contains('Next').click();
+            cy.get('button').contains('Preview').click();
+            cy.get('button').contains('Submit').click();
+            cy.wait(5000)
+            cy.get('tbody.ant-table-tbody input[type="checkbox"]').each(($checkbox) => {
+              cy.wrap($checkbox).check({ force: true });
+            });
+      
+            cy.get('button').contains('Administer Vaccine').click();
+            administerVaccine('1234567890', 0);
+      
+                        
+                })
+
 
 
       /*
