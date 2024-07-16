@@ -20,8 +20,6 @@ context('Actions', () => {
 }
   
    function runTest() {
-    describe('Bstackdemo', () => {
-
    it('.type() - Register a Client', () => {
     cy.viewport(1280, 720);
 
@@ -501,7 +499,7 @@ it ('Administer at 24 Months', () => {
 
       })*/
        //   cy.lighthouse();
-        });
+        
     }
     
   })
