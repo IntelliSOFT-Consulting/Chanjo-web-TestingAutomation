@@ -8,27 +8,26 @@ const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
     before(() => {
-     // cy.session('login', ()=>{
-        cy.baseurl();
-       //cy.login();
+     cy.login()
     })
- //})
- for (let i = 0; i < numberOfRuns; i++) {//loop again
-  describe(`Test Run ${i + 1}`, () => {
-    runTest();
+
+  for (let i = 0; i < numberOfRuns; i++) {//loop again
+   describe(`Test Run ${i + 1}`, () => {
+     runTest();
   });
 }
   
    function runTest() {
    it('.type() - Register a Client', () => {
-    cy.viewport(1280, 720);
-
+    cy.viewport(1280, 800)
+   
     const firstName = faker.name.firstName();
     const familyName = faker.name.lastName();
     const lastName = faker.name.lastName();
     const careGiverName = faker.name.findName();
  
    cy.wait(2500)
+   //cy.visit("/")
    cy.get(':nth-child(5) > .hover\\:bg-gray-50\\]').contains("Register Client").click()
         cy.wait(2500)       
         cy.get('#clientDetails_firstName').type(firstName)
@@ -126,11 +125,11 @@ context('Actions', () => {
                  cy.get('button').contains('Submit').click();
                  cy.wait(5000)
                                               
-                  })
+                  
        /*************Administer Vaccines***********************************************/
                     
-     it('.Administer Vaccine', () => {
-        cy.viewport(1280, 720);
+    // it('.Administer Vaccine', () => {
+       
         cy.wait(5000);
 
         cy.get(':nth-child(1) > :nth-child(1) > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
@@ -139,10 +138,10 @@ context('Actions', () => {
 
         administerVaccine('1234567890', 0);
 
-      })
+     // })
       
-     it ('Administer at 6 Weeks', () => {
-            cy.viewport(1280, 720);
+    // it ('Administer at 6 Weeks', () => {
+           
       cy.wait(5000);
      //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -165,11 +164,11 @@ context('Actions', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
            
-     })
+    // })
 
 
-    it ('Administer at 10 Weeks', () => {
-      cy.viewport(1280, 720);
+   // it ('Administer at 10 Weeks', () => {
+     
       cy.wait(5000);
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
       cy.wait(5000)
@@ -193,10 +192,10 @@ context('Actions', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-     })
+   //  })
 
-it ('Administer at 14 Weeks', () => {
-      cy.viewport(1280, 720);
+//it ('Administer at 14 Weeks', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -224,11 +223,11 @@ it ('Administer at 14 Weeks', () => {
 
       administerVaccine('1234567890', 0);
 
-     })
+   //  })
 
 
-it ('Administer at 6 Months', () => {
-      cy.viewport(1280, 720);
+//it ('Administer at 6 Months', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -254,10 +253,10 @@ it ('Administer at 6 Months', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-          })
+        //  })
 
-it ('Administer at 7 Months', () => {
-      cy.viewport(1280, 720);
+//it ('Administer at 7 Months', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -283,10 +282,10 @@ it ('Administer at 7 Months', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-         })
+       //  })
 
-    it ('Administer at 9 Months', () => {
-    cy.viewport(1280, 720);
+    //it ('Administer at 9 Months', () => {
+   
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -312,10 +311,10 @@ it ('Administer at 7 Months', () => {
       administerVaccine('1234567890', 0);
 
             
-          })
+         // })
 
-    it ('Administer at 12 Months', () => {
-      cy.viewport(1280, 720);
+    //it ('Administer at 12 Months', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -342,11 +341,11 @@ it ('Administer at 7 Months', () => {
       administerVaccine('1234567890', 0);
 
             
-        })
+      //  })
 
 
-it ('Administer at 18 Months', () => {
-      cy.viewport(1280, 720);
+//it ('Administer at 18 Months', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -372,10 +371,10 @@ it ('Administer at 18 Months', () => {
       administerVaccine('1234567890', 0);
 
        
-     })
+    // })
 
-it ('Administer at 24 Months', () => {
-      cy.viewport(1280, 720);
+//it ('Administer at 24 Months', () => {
+     
       cy.wait(5000);
       //      const { firstName, lastName, careGiverName } = clientData;
       cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -399,12 +398,12 @@ it ('Administer at 24 Months', () => {
       cy.get('button').contains('Administer Vaccine').click();
       administerVaccine('1234567890', 0);
 
-          })
+       //   })
           
 
 
-          it ('Administer Deworming Dose 4 at 30 Months', () => {
-            cy.viewport(1280, 720);
+          //it ('Administer Deworming Dose 4 at 30 Months', () => {
+           
             cy.wait(5000);
             //      const { firstName, lastName, careGiverName } = clientData;
             cy.get('.right-0 > .text-\\[\\#163C94\\]').click()
@@ -437,7 +436,7 @@ it ('Administer at 24 Months', () => {
       
 
       it('.Register AEFI', () => {
-        cy.viewport(1280, 720);
+       
         cy.wait(5000);
         const { firstName, lastName, careGiverName } = clientData;
          // cy.get('.bg-gray-50').contains("Search Client").click()

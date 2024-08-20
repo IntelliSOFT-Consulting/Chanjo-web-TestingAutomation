@@ -1,8 +1,6 @@
 function administerVaccine(batchNumber, vaccineType) {
-    // function implementation here
     const numberOfDownArrowPresses = Cypress._.random(1, 10);
-
-    const randomNumber14 = Math.floor(Math.random() * 3); // Generates a number between 0 and 2
+    const randomNumber14 = Math.floor(Math.random() * 3); 
     switch (randomNumber14) {
     case 0://Administer
     cy.get('.bg-\\[\\#4E8D6E\\]').click().then(() => {

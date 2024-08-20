@@ -1,12 +1,15 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  projectId: "ox1efx",
+  projectId: '4kbv2q',
   e2e: {
+       baseUrl: "http://chanjoke.intellisoftkenya.com:8099",
     setupNodeEvents(on, config) {
       // implement node event listeners here
+   
+      
     },
-    testIsolation: false
+  //  testIsolation: false
   },
 });
 

@@ -1,4 +1,7 @@
 {
-    "watchForFileChanges": false
+    "watchForFileChanges": false,
+   
+    "preserveGlobalVariable": true,
+    "testIsolation": false
   }
   
