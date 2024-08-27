@@ -1,7 +1,7 @@
 ///<reference types="cypress" />
 
 import faker from 'faker';
-const { administerVaccine } = require('./functions');
+const { administerVaccine, registerCaregiver } = require('./functions');
 let clientData;
 const numberOfRuns = 1;
 const numberOfDownArrowPresses = Cypress._.random(1, 10);
@@ -38,7 +38,6 @@ context('Actions', () => {
     
          cy.get('#clientDetails_gender > :nth-child(2) > .ant-radio > .ant-radio-input').click()
          cy.get('#clientDetails_vaccineType > :nth-child(1) > .ant-radio > .ant-radio-input').click()
-         // Generate a random date between now and 14 days back
         const currentDate = new Date();
         const startDate = new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000); // 14 days back
         const randomTime = startDate.getTime() + Math.random() * (currentDate.getTime() - startDate.getTime());
@@ -65,14 +64,16 @@ context('Actions', () => {
         const randomNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
         const randomNumberString = randomNumber.toString();
         cy.get('#clientDetails_identificationNumber').type(randomNumberString);
-
-   
- 
         cy.get('button').contains('Next').click();
 
         /**********CAREGIVER*****************************************************************/
-        cy.get('#caregiverType').click() 
-        cy.wait(1000)       
+        /*   cy.get('#caregiverType').click()
+        cy.get('#caregiverRelationship').click()
+            cy.get('#caregiverRelationship').trigger("keydown", { keyCode: 13 })
+
+        cy.wait(1000)  
+        
+        
         cy.get('#caregiverType').click()
         for (let i = 0; i < numberOfDownArrowPresses; i++) {
           cy.get('#caregiverType').type('{downarrow}');
@@ -82,14 +83,10 @@ context('Actions', () => {
           cy.get('#caregiverID').type(randomNumber)
 
         const randomNumber2 = "07" + Math.floor(Math.random() * 1000000000).toString().padStart(8, "0");// Phone number
-        cy.get('#phoneNumber').type(randomNumber2); 
-        /***************************************************************************/
+        cy.get('#phoneNumber').type(randomNumber2); */
 
-
-       cy.get('button').contains('Add Caregiver').click()
-        cy.get('button').contains('Next').click();
-        cy.wait(1500)
-
+        registerCaregiver(0);
+        cy.get('#clientDetails > .px-4 > .ant-btn-primary').click()
         /*************ADDRESS DETAILS***********************************************/
 
         const county = [

@@ -34,7 +34,7 @@ function administerVaccine(batchNumber, vaccineType) {
          })
     
       cy.wait(2500)
-      cy.get('button').contains('Contraindicate').click();
+      cy.get('button').contains('Reschedule').click();
       cy.get('.ant-popconfirm-buttons > .ant-btn-primary').click()
       cy.wait(2000)
      });
@@ -70,9 +70,43 @@ function administerVaccine(batchNumber, vaccineType) {
      }
      cy.wait(10000)
 
+
   }
+  function registerCaregiver(caregiver) {
+    const randomNumber2 = "07" + Math.floor(Math.random() * 1000000000).toString().padStart(8, "0"); // Phone number
+    cy.get('#caregiverRelationship').click();
+    switch (caregiver) {
+        case 0:
+            cy.get('#caregiverRelationship').type('{enter}', { force: true });
+            break;
+
+        case 1:
+            cy.get('#caregiverRelationship').type('{downarrow}', { force: true }); // Move to the second option
+            cy.get('#caregiverRelationship').type('{enter}', { force: true });
+            break;
+
+        default:
+            break;
+    }
+
+   
+    cy.get('#caregiverType').click();
+    cy.get('#caregiverType').type('{enter}', { force: true });
+    cy.get('#caregiverName').type('John Doe', { force: true });
+    cy.get('#caregiverID').type('1234567890', { force: true });
+    cy.get('#phoneNumber').type(randomNumber2, { force: true });
+
+    // Final actions
+    cy.contains('Add Next of Kin').click();
+   
+}
+
+
+
+
 
  
   module.exports = {
-    administerVaccine,
-  };
+    registerCaregiver,
+    administerVaccine
+  }
