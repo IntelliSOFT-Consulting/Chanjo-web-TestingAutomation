@@ -23,12 +23,12 @@ context('Actions', () => {
    // function runTest() {
 
    it('.type() - Register a user', () => {
-    cy.viewport(1280, 720);
+    cy.viewport(1280, 720)
 
-    const firstName = faker.name.firstName();
-    const familyName = faker.name.lastName();
-    const lastName = faker.name.lastName();
-    const randomEmail = faker.internet.email();
+    const firstName = faker.name.firstName()
+    const familyName = faker.name.lastName()
+    const lastName = faker.name.lastName()
+    const randomEmail = faker.internet.email()
     const randomPhoneNumber = faker.phone.phoneNumberFormat();
     const randomNumber = faker.datatype.number({ min: 10000000, max: 99999999 })
 
@@ -49,35 +49,35 @@ context('Actions', () => {
          for (let i = 0; i < numberOfDownArrowPresses; i++) {
             cy.get('#county').type('{downarrow}', {force: true})
            }
-           cy.get('#county').type('{Enter}',{force: true});
-            cy.wait(1000)
-           cy.get('#subCounty').click( {force: true})
+          cy.get('#county').type('{Enter}',{force: true});
+          cy.wait(1000)
+          cy.get('#subCounty').click( {force: true})
            for (let i = 0; i < numberOfDownArrowPresses; i++) {
-            cy.get('#subCounty',  {force: true}).type('{downarrow}', {force: true})
+          cy.get('#subCounty',  {force: true}).type('{downarrow}', {force: true})
            }
-           cy.get('#subCounty').type('{Enter}',{force: true});
-           cy.wait(1000)
+          cy.get('#subCounty').type('{Enter}',{force: true});
+          cy.wait(1000)
 
-           cy.get('#ward').click({force: true})
+          cy.get('#ward').click({force: true})
            for (let i = 0; i < numberOfDownArrowPresses; i++) {
             cy.get('#ward').type('{downarrow}', {force: true})
            }
-           cy.get('#ward').type('{Enter}',{force: true});
-           cy.wait(1000)
+          cy.get('#ward').type('{Enter}',{force: true});
+          cy.wait(1000)
 
-           cy.get('#facility').click({force: true})
+          cy.get('#facility').click({force: true})
            for (let i = 0; i < numberOfDownArrowPresses; i++) {
-            cy.get('#facility').type('{downarrow}', {force: true})
+          cy.get('#facility').type('{downarrow}', {force: true})
            }
-           cy.get('#facility').type('{Enter}' ,{force: true});
-           cy.wait(1000)
+          cy.get('#facility').type('{Enter}' ,{force: true});
+          cy.wait(1000)
 
-           cy.get('#roleGroup').click({force: true})
+          cy.get('#roleGroup').click({force: true})
            for (let i = 0; i < numberOfDownArrowPresses; i++) {
-            cy.get('#roleGroup').type('{downarrow}', {force: true})
+          cy.get('#roleGroup').type('{downarrow}', {force: true})
            }
-           cy.get('#roleGroup').type('{Enter}', {force: true});
-           cy.wait(1000)
+          cy.get('#roleGroup').type('{Enter}', {force: true});
+          cy.wait(1000)
 
           cy.get('button').contains('Submit').click()   
 

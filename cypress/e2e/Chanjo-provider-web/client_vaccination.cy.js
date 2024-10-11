@@ -494,7 +494,6 @@ context('Actions', () => {
           cy.get('button').contains('Submit').click()
 
       })*/
-       //   cy.lighthouse();
         
     }
     
