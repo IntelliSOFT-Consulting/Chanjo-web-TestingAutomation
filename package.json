@@ -7,8 +7,9 @@
 
   "scripts": {
     "build:production": "node --version",
-    "start": "npx cypress open",
-    "test": "npx cypress run"
+    "build": "echo 'No build step defined'", 
+    "start": "npx cypress open",               
+    "test": "npx cypress run"                 
   },
 
   "dependencies": {
