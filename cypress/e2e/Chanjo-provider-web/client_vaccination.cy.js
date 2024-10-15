@@ -8,14 +8,15 @@ const numberOfDownArrowPresses = Cypress._.random(1, 10);
 
 context('Actions', () => {
     before(() => {
-     cy.login()
+      cy.baseurl()
+      cy.login()
     })
 
-  for (let i = 0; i < numberOfRuns; i++) {//loop again
-   describe(`Test Run ${i + 1}`, () => {
-     runTest();
-  });
-}
+          for (let i = 0; i < numberOfRuns; i++) {//loop again
+          describe(`Test Run ${i + 1}`, () => {
+            runTest();
+          });
+        }
   
    function runTest() {
    it('.type() - Register a Client', () => {
