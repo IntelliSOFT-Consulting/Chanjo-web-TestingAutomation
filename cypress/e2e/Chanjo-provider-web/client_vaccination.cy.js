@@ -119,7 +119,7 @@ context('Actions', () => {
                           cy.get('#clientDetails_ward').type('{downarrow}');
                         }
                           cy.get('#clientDetails_ward').type('{enter}');
-                          cy.get('#clientDetails_estateOrHouseNo').type("Village X")
+                          cy.get('#clientDetails_estateOrHouseNo').type("Village")
                  cy.get('button').contains('Preview').click();
                  cy.get('button').contains('Submit').click();
                  cy.wait(5000)
