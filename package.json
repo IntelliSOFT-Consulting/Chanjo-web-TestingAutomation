@@ -6,13 +6,12 @@
   },
 
   "scripts": {
-
     "build:production": "node --version",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx cypress open",
+    "test": "npx cypress run"
   },
 
   "dependencies": {
     "nodemailer": "^6.9.13"
   }
- 
 }
