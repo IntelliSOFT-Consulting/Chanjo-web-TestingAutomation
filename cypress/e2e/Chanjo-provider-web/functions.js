@@ -74,9 +74,9 @@ function administerVaccine(batchNumber, vaccineType) {
   }
   function registerCaregiver(caregiver) {
     const randomNumber2 = "07" + Math.floor(Math.random() * 1000000000).toString().padStart(8, "0"); // Phone number
-    cy.get('#caregiverType').click()
+    cy.get('#caregiverType').click().type("{Enter}")
     cy.get('#caregiverName').type('John Doe', { force: true })
-    cy.get('#caregiverIdentificationType').click()
+    cy.get('#caregiverIdentificationType').click().type("{Enter}")
     cy.get('#caregiverID').type('1234567890', { force: true })
     cy.get('#phoneNumber').type(randomNumber2, { force: true });
 
